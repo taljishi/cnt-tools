@@ -3,7 +3,7 @@ from . import __version__ as app_version
 app_name = "ajc_tools"
 app_title = "AJC Tools"
 app_publisher = "Cloud Nine Technologies (CNT)"
-app_description = "Tooll for generating employee checkin, bank statatement formatting, and bill creation"
+app_description = "Tools for generating employee checkins, formatting bank statements, and craating of purchase invoices from supplier's bills"
 app_email = "talal@aljishi.com"
 app_license = "MIT"
 
@@ -215,3 +215,5 @@ app_license = "MIT"
 # auth_hooks = [
 #	"ajc_tools.auth.validate"
 # ]
+
+fixtures = ["Custom Field","Property Setter","Client Script","Server Script","Workspace","Role","Print Format"]
