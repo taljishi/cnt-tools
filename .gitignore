@@ -1,7 +1,53 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# OS-specific files
 .DS_Store
-*.pyc
-*.egg-info
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
 *.swp
-tags
-ajc_tools/docs/current
+
+# Frappe / ERPNext artifacts
+*.pyc
+*.sass-cache/
+*.eggs/
+*.egg-info/
+*.bak
+
+# Node / frontend
 node_modules/
+dist/
+build/
+package-lock.json
+yarn.lock
+
+# Test data
+*.csv
+*.json
+*.xlsx
+*.pdf
+*.docx
+*.txt
+
+# Bench-specific configs (keep clean repo)
+sites/
+*.sqlite3
+*.db
+*.sql
+
+# Ignore coverage / testing output
+.coverage
+htmlcov/
+pytest_cache/
