@@ -1,9 +1,12 @@
 # Copyright (c) 2025, Cloud Nine Technologies (CNT) and contributors
 # For license information, please see license.txt
 
-# apps/ajc_tools/ajc_tools/ajc_tools/doctype/statement_run/statement_run.py
 import frappe
 from frappe.model.document import Document
+
+# Ensure the StatementRun class is defined for Frappe DocType import
+class StatementRun(Document):
+    pass
 
 # Fields we copy from Statement Mapping onto the Formatter
 _MAPPING_KEYS = [

@@ -32,10 +32,10 @@ frappe.ui.form.on('Checkin Source File', {
 	function add_parse_button(frm) {
 	  const status = (frm.doc.status || '').toLowerCase();
 	  if (status === 'imported' || status === 'parsed') {
-		return; // hide Parse Source after parsing or generation
+		return; // hide Parse Data after parsing or generation
 	  }
 	
-	  frm.add_custom_button(__('Parse Source'), () => {
+	  frm.add_custom_button(__('Parse Data'), () => {
 		if (!frm.doc.source_files || !frm.doc.source_files.length) {
 		  frappe.msgprint(__('Add at least one source file (in the Source Files table) before parsing.'));
 		  return;
@@ -93,7 +93,7 @@ frappe.ui.form.on('Checkin Source File', {
               <div>${__('Last Checkin Time')}: <b>${frappe.datetime.str_to_user(d.last_checkin_time || '') || '-'}</b></div>
               <div>${__('Shift Types Updated')}: <b>${d.shifts_updated || 0}</b></div>
               <div class="mt-3">
-                <a class="btn btn-sm btn-default" onclick="cur_frm && cur_frm.script_manager && cur_frm.script_manager.trigger ? cur_frm.script_manager.trigger('show_results_modal') : null">${__('Show Reasons')}</a>
+                <a class="btn btn-sm btn-default" onclick="cur_frm && cur_frm.script_manager && cur_frm.script_manager.trigger ? cur_frm.script_manager.trigger('show_results_modal') : null">${__('View Logs')}</a>
               </div>
             `,
             indicator
@@ -296,7 +296,7 @@ function show_results_modal(frm) {
   }, 100);
   }
 
-// Allow the inline "Show Reasons" link to trigger the modal
+// Allow the inline "View Logs" link to trigger the modal
 frappe.ui.form.on('Checkin Run', {
   show_results_modal: function(frm) {
     show_results_modal(frm);

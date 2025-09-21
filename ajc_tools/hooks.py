@@ -6,6 +6,8 @@ app_publisher = "Cloud Nine Technologies (CNT)"
 app_description = "Tools for generating employee checkins, formatting bank statements, and craating of purchase invoices from supplier's bills"
 app_email = "talal@aljishi.com"
 app_license = "MIT"
+app_icon = "setting-gear"
+app_color = "blue"
 
 # Includes in <head>
 # ------------------
@@ -216,4 +218,12 @@ app_license = "MIT"
 #	"ajc_tools.auth.validate"
 # ]
 
-fixtures = ["Custom Field","Property Setter","Client Script","Server Script","Workspace","Role","Print Format"]
+fixtures = [
+    "Custom Field",
+    "Property Setter",
+    "Client Script",
+    "Server Script",
+    "Role",
+    "Print Format",
+    {"doctype": "Workspace", "filters": [["module", "=", "AJC Tools"]]},
+]

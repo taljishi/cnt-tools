@@ -1,1 +1,13 @@
-[]
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Statement Run",
+  "enabled": 1,
+  "modified": "2025-09-14 21:52:43.371742",
+  "module": null,
+  "name": "Statement Run Script",
+  "script": "frappe.ui.form.on('Statement Run', {\n  onload(frm) { toggle_lock(frm); },\n  refresh(frm) { toggle_lock(frm); },\n  lock_mapping_fields(frm) { toggle_lock(frm); },\n\n  // OPTIONAL: auto-infer has_credit_debit_columns (keep if you want)\n  amount_column(frm) { infer_has_cd(frm); },\n  credit_column(frm) { infer_has_cd(frm); },\n  debit_column(frm) { infer_has_cd(frm); },\n});\n\nfunction toggle_lock(frm) {\n  const locked = !!frm.doc.lock_mapping_fields;\n\n  // Core mapping fields\n  const mapped_fields = [\n    'date_column', 'description_column',\n    'amount_column', 'credit_column', 'debit_column',\n    'balance_column', 'reference_column',\n    'date_format',\n    // Advanced parsing/options:source_file\n    'decimal_separator', 'remove_thousand_separators',\n    'negative_parentheses_as_minus', 'skip_header_rows',\n    'encoding', 'delimiter', 'file_type',\n    'ignore_rows_containing',\n    // If visible:\n    'has_credit_debit_columns'\n  ];\n\n  mapped_fields.forEach(f => frm.set_df_property(f, 'read_only', locked ? 1 : 0));\n\n  // OPTIONAL: auto-collapse/expand Advanced section (rename if your section fieldname differs)\n  try {\n    frm.set_df_property('advanced_section', 'collapsible', 1);\n    frm.set_df_property('advanced_section', 'collapsed', locked ? 1 : 0);\n  } catch (e) { /* ignore if section fieldname differs */ }\n}\n\n// OPTIONAL helper: auto-infer the switch if you keep it hidden/read-only\nfunction infer_has_cd(frm) {\n  const hasCD = !!(frm.doc.credit_column && frm.doc.debit_column);\n  if (frm.get_field('has_credit_debit_columns')) {\n    frm.set_value('has_credit_debit_columns', hasCD ? 1 : 0);\n  }\n}",
+  "view": "Form"
+ }
+]

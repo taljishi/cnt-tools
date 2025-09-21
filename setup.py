@@ -12,7 +12,7 @@ setup(
 	description="Tooll for generating employee checkin, bank statatement formatting, and bill creation",
 	author="Cloud Nine Technologies (CNT)",
 	author_email="talal@aljishi.com",
-	packages=find_packages(),
+	packages=find_packages(include=['ajc_tools', 'ajc_tools.*']),
 	zip_safe=False,
 	include_package_data=True,
 	install_requires=install_requires

@@ -8,6 +8,10 @@ import frappe
 from frappe.model.document import Document
 from frappe.utils import get_datetime, cstr, now_datetime, cint
 
+# Ensure Frappe can properly import the Checkin Run DocType
+class CheckinRun(Document):
+    pass
+
 
 ISO_TS_PREFIX = re.compile(r'^\d{4}-\d{2}-\d{2}T')
 
@@ -16,14 +20,14 @@ ISO_TS_PREFIX = re.compile(r'^\d{4}-\d{2}-\d{2}T')
 CREATED = "CREATED"
 ALREADY_EXISTS = "ALREADY_EXISTS"
 FAILED = "FAILED"
-SKIPPED_NOT_READY = "SKIPPED_NOT_READY"
+SKIPPED = "SKIPPED"
 
 # Human-friendly labels for result_json
 HUMAN_STATUSES = {
     "CREATED": "Created",
     "ALREADY_EXISTS": "Already Exists",
     "FAILED": "Failed",
-    "SKIPPED_NOT_READY": "Skipped (Not Ready)",
+    "SKIPPED": "Skipped",
 }
 
 def _result_row(row, status, detail="", name=""):
@@ -37,8 +41,6 @@ def _result_row(row, status, detail="", name=""):
         "name": cstr(name or ""),
     }
 
-class CheckinRun(Document):
-    pass
 
 # -------- helpers --------
 
@@ -553,7 +555,7 @@ def parse_source(name: str, show_popup: int = 0):
             f"<br>Skipped before cutoff: {summary['skipped_before_cutoff']}. Skipped duplicates (within {int(doc.gap_between_events or 60)}s): {summary['skipped_duplicates']}. Skipped no employee: {summary['skipped_no_employee']}."
             f"<br>Source file: <code>{frappe.utils.escape_html(summary.get('chosen_file') or '')}</code>"
             f"{preview}",
-            title="Parse Source",
+            title="Parsed Data",
             indicator="green" if summary['parsed'] else "orange",
         )
 
@@ -578,7 +580,7 @@ def generate_checkins(name: str):
     for e in rows:
         # Only process rows that are ready and have a matched employee
         if not e.get("ready") or not e.get("matched_employee"):
-            results.append(_result_row(e, SKIPPED_NOT_READY, detail="Row not ready or no employee"))
+            results.append(_result_row(e, SKIPPED, detail="Row not ready or no employee"))
             continue
 
         ts = get_datetime(e.get("event_time"))

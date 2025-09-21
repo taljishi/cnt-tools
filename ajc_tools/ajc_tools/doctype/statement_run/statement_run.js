@@ -147,12 +147,12 @@ function enforce_import_lock(frm) {
 	}
 	
 	function show_preview_dialog(frm) {
-  console.log('[BSF] show_preview_dialog: start for', frm.doc && frm.doc.name);
+  console.log('show_preview_dialog: start for', frm.doc && frm.doc.name);
   let payload = {};
   try {
     payload = frm.doc.preview_json ? JSON.parse(frm.doc.preview_json) : {};
   } catch (e) {
-    console.error('[BSF] Failed to parse preview_json', e);
+    console.error('[Failed to parse preview_json', e);
     payload = {};
   }
 
@@ -189,9 +189,9 @@ function enforce_import_lock(frm) {
     });
     d.$body.html(html);
     d.show();
-    console.log('[BSF] show_preview_dialog: dialog displayed');
+    console.log('[show_preview_dialog: dialog displayed');
   } catch (e) {
-    console.error('[BSF] show_preview_dialog: dialog error', e);
+    console.error('show_preview_dialog: dialog error', e);
     // Fallback: show in a msgprint so at least content is visible
     frappe.msgprint({
       title: __('Bank Statement Preview'),
