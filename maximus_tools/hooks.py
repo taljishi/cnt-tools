@@ -220,20 +220,18 @@ app_color = "blue"
 
 # Export only what belongs to this app
 fixtures = [
-    # Types that have a Module field → keep only records under this app's module
+    # Doctypes that HAVE a "module" field
     {"dt": "Client Script",   "filters": [["module", "=", "Maximus Tools"]]},
     {"dt": "Print Format",    "filters": [["module", "=", "Maximus Tools"]]},
     {"dt": "Server Script",   "filters": [["module", "=", "Maximus Tools"]]},
-    {"dt": "Workspace",       "filters": [["module", "=", "Maximus Tools"]]},
     {"dt": "Notification",    "filters": [["module", "=", "Maximus Tools"]]},
-    {"dt": "Workflow",        "filters": [["module", "=", "Maximus Tools"]]},
-    {"dt": "Workflow State",  "filters": [["module", "=", "Maximus Tools"]]},
-    {"dt": "Workflow Action", "filters": [["module", "=", "Maximus Tools"]]},
 
-    # Types that DON'T have a Module field → filter by name pattern (adjust if needed)
+    # Doctypes WITHOUT a "module" field → use naming convention
+    {"dt": "Workflow",        "filters": [["name", "like", "Maximus %"]]},
+    {"dt": "Workflow State",  "filters": [["name", "like", "Maximus %"]]},
+    {"dt": "Workflow Action", "filters": [["name", "like", "Maximus %"]]},
+
+    # Also no module: use a prefix you actually use in your CF/PS names
     {"dt": "Custom Field",    "filters": [["name", "like", "maximus_%"]]},
     {"dt": "Property Setter", "filters": [["name", "like", "maximus_%"]]},
-    # If you created Roles/Role Profiles specific to this app and named them consistently:
-    # {"dt": "Role",          "filters": [["name", "like", "Maximus %"]]},
-    # {"dt": "Role Profile",  "filters": [["name", "like", "Maximus %"]]},
 ]

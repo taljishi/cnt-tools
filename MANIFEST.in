@@ -20,4 +20,4 @@ recursive-include maximus_tools *.txt
 recursive-exclude maximus_tools *.pyc
 
 # Fixtures (exported via hooks.py / bench export-fixtures)
-recursive-include fixtures *.json
+recursive-include fixtures *.jsonrecursive-include fixtures *.json
