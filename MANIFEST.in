@@ -4,15 +4,20 @@ include *.json
 include *.md
 include *.py
 include *.txt
-recursive-include ajc_tools *.css
-recursive-include ajc_tools *.csv
-recursive-include ajc_tools *.html
-recursive-include ajc_tools *.ico
-recursive-include ajc_tools *.js
-recursive-include ajc_tools *.json
-recursive-include ajc_tools *.md
-recursive-include ajc_tools *.png
-recursive-include ajc_tools *.py
-recursive-include ajc_tools *.svg
-recursive-include ajc_tools *.txt
-recursive-exclude ajc_tools *.pyc
+
+# Package data inside the app
+recursive-include maximus_tools *.css
+recursive-include maximus_tools *.csv
+recursive-include maximus_tools *.html
+recursive-include maximus_tools *.ico
+recursive-include maximus_tools *.js
+recursive-include maximus_tools *.json
+recursive-include maximus_tools *.md
+recursive-include maximus_tools *.png
+recursive-include maximus_tools *.py
+recursive-include maximus_tools *.svg
+recursive-include maximus_tools *.txt
+recursive-exclude maximus_tools *.pyc
+
+# Fixtures (exported via hooks.py / bench export-fixtures)
+recursive-include fixtures *.json

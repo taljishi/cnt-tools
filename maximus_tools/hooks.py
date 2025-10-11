@@ -1,10 +1,10 @@
 from . import __version__ as app_version
 
-app_name = "ajc_tools"
-app_title = "AJC Tools"
+app_name = "maximus_tools"
+app_title = "Maximum Tools"
 app_publisher = "Cloud Nine Technologies (CNT)"
 app_description = "Tools for generating employee checkins, formatting bank statements, and craating of purchase invoices from supplier's bills"
-app_email = "talal@aljishi.com"
+app_email = "info@cnt.bh"
 app_license = "MIT"
 app_icon = "setting-gear"
 app_color = "blue"
@@ -13,15 +13,15 @@ app_color = "blue"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/ajc_tools/css/ajc_tools.css"
-# app_include_js = "/assets/ajc_tools/js/ajc_tools.js"
+# app_include_css = "/assets/maximus_tools/css/maximus_tools.css"
+# app_include_js = "/assets/maximus_tools/js/maximus_tools.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/ajc_tools/css/ajc_tools.css"
-# web_include_js = "/assets/ajc_tools/js/ajc_tools.js"
+# web_include_css = "/assets/maximus_tools/css/maximus_tools.css"
+# web_include_js = "/assets/maximus_tools/js/maximus_tools.js"
 
 # include custom scss in every website theme (without file extension ".scss")
-# website_theme_scss = "ajc_tools/public/scss/website"
+# website_theme_scss = "maximus_tools/public/scss/website"
 
 # include js, css files in header of web form
 # webform_include_js = {"doctype": "public/js/doctype.js"}
@@ -58,43 +58,43 @@ app_color = "blue"
 
 # add methods and filters to jinja environment
 # jinja = {
-#	"methods": "ajc_tools.utils.jinja_methods",
-#	"filters": "ajc_tools.utils.jinja_filters"
+#	"methods": "maximus_tools.utils.jinja_methods",
+#	"filters": "maximus_tools.utils.jinja_filters"
 # }
 
 # Installation
 # ------------
 
-# before_install = "ajc_tools.install.before_install"
-# after_install = "ajc_tools.install.after_install"
+# before_install = "maximus_tools.install.before_install"
+# after_install = "maximus_tools.install.after_install"
 
 # Uninstallation
 # ------------
 
-# before_uninstall = "ajc_tools.uninstall.before_uninstall"
-# after_uninstall = "ajc_tools.uninstall.after_uninstall"
+# before_uninstall = "maximus_tools.uninstall.before_uninstall"
+# after_uninstall = "maximus_tools.uninstall.after_uninstall"
 
 # Integration Setup
 # ------------------
 # To set up dependencies/integrations with other apps
 # Name of the app being installed is passed as an argument
 
-# before_app_install = "ajc_tools.utils.before_app_install"
-# after_app_install = "ajc_tools.utils.after_app_install"
+# before_app_install = "maximus_tools.utils.before_app_install"
+# after_app_install = "maximus_tools.utils.after_app_install"
 
 # Integration Cleanup
 # -------------------
 # To clean up dependencies/integrations with other apps
 # Name of the app being uninstalled is passed as an argument
 
-# before_app_uninstall = "ajc_tools.utils.before_app_uninstall"
-# after_app_uninstall = "ajc_tools.utils.after_app_uninstall"
+# before_app_uninstall = "maximus_tools.utils.before_app_uninstall"
+# after_app_uninstall = "maximus_tools.utils.after_app_uninstall"
 
 # Desk Notifications
 # ------------------
 # See frappe.core.notifications.get_notification_config
 
-# notification_config = "ajc_tools.notifications.get_notification_config"
+# notification_config = "maximus_tools.notifications.get_notification_config"
 
 # Permissions
 # -----------
@@ -133,39 +133,39 @@ app_color = "blue"
 
 # scheduler_events = {
 #	"all": [
-#		"ajc_tools.tasks.all"
+#		"maximus_tools.tasks.all"
 #	],
 #	"daily": [
-#		"ajc_tools.tasks.daily"
+#		"maximus_tools.tasks.daily"
 #	],
 #	"hourly": [
-#		"ajc_tools.tasks.hourly"
+#		"maximus_tools.tasks.hourly"
 #	],
 #	"weekly": [
-#		"ajc_tools.tasks.weekly"
+#		"maximus_tools.tasks.weekly"
 #	],
 #	"monthly": [
-#		"ajc_tools.tasks.monthly"
+#		"maximus_tools.tasks.monthly"
 #	],
 # }
 
 # Testing
 # -------
 
-# before_tests = "ajc_tools.install.before_tests"
+# before_tests = "maximus_tools.install.before_tests"
 
 # Overriding Methods
 # ------------------------------
 #
 # override_whitelisted_methods = {
-#	"frappe.desk.doctype.event.event.get_events": "ajc_tools.event.get_events"
+#	"frappe.desk.doctype.event.event.get_events": "maximus_tools.event.get_events"
 # }
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
 # override_doctype_dashboards = {
-#	"Task": "ajc_tools.task.get_dashboard_data"
+#	"Task": "maximus_tools.task.get_dashboard_data"
 # }
 
 # exempt linked doctypes from being automatically cancelled
@@ -179,13 +179,13 @@ app_color = "blue"
 
 # Request Events
 # ----------------
-# before_request = ["ajc_tools.utils.before_request"]
-# after_request = ["ajc_tools.utils.after_request"]
+# before_request = ["maximus_tools.utils.before_request"]
+# after_request = ["maximus_tools.utils.after_request"]
 
 # Job Events
 # ----------
-# before_job = ["ajc_tools.utils.before_job"]
-# after_job = ["ajc_tools.utils.after_job"]
+# before_job = ["maximus_tools.utils.before_job"]
+# after_job = ["maximus_tools.utils.after_job"]
 
 # User Data Protection
 # --------------------
@@ -215,15 +215,25 @@ app_color = "blue"
 # --------------------------------
 
 # auth_hooks = [
-#	"ajc_tools.auth.validate"
+#	"maximus_tools.auth.validate"
 # ]
 
+# Export only what belongs to this app
 fixtures = [
-    "Custom Field",
-    "Property Setter",
-    "Client Script",
-    "Server Script",
-    "Role",
-    "Print Format",
-    {"doctype": "Workspace", "filters": [["module", "=", "AJC Tools"]]},
+    # Types that have a Module field → keep only records under this app's module
+    {"dt": "Client Script",   "filters": [["module", "=", "Maximus Tools"]]},
+    {"dt": "Print Format",    "filters": [["module", "=", "Maximus Tools"]]},
+    {"dt": "Server Script",   "filters": [["module", "=", "Maximus Tools"]]},
+    {"dt": "Workspace",       "filters": [["module", "=", "Maximus Tools"]]},
+    {"dt": "Notification",    "filters": [["module", "=", "Maximus Tools"]]},
+    {"dt": "Workflow",        "filters": [["module", "=", "Maximus Tools"]]},
+    {"dt": "Workflow State",  "filters": [["module", "=", "Maximus Tools"]]},
+    {"dt": "Workflow Action", "filters": [["module", "=", "Maximus Tools"]]},
+
+    # Types that DON'T have a Module field → filter by name pattern (adjust if needed)
+    {"dt": "Custom Field",    "filters": [["name", "like", "maximus_%"]]},
+    {"dt": "Property Setter", "filters": [["name", "like", "maximus_%"]]},
+    # If you created Roles/Role Profiles specific to this app and named them consistently:
+    # {"dt": "Role",          "filters": [["name", "like", "Maximus %"]]},
+    # {"dt": "Role Profile",  "filters": [["name", "like", "Maximus %"]]},
 ]
