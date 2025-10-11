@@ -13,6 +13,13 @@ import tempfile
 import shutil
 from typing import Dict, List, Optional, Tuple
 
+# --- Vendor parser import hook ---
+try:
+    from ajc_tools.ajc_tools.vendor_parsers import get_vendor_parser
+except Exception:
+    get_vendor_parser = None  # type: ignore
+get_vendor_parser = None  # TEMP: vendor parser disabled
+
 import frappe
 from frappe.model.document import Document
 from frappe.utils import now, today, add_days, format_date
@@ -407,30 +414,74 @@ def parse_files(name: str):
                 totals['failed'] += 1
                 continue
 
-            # Select mapping (supplier on row or parent is a strong hint)
-            supplier_hint = row.supplier or doc.supplier
-            mapping = _select_mapping(supplier_hint=supplier_hint, full_text=full_text)
-            if not mapping:
-                row.status = "Error"
-                row.last_error = "No active Invoice Mapping matched this PDF."
-                _append_log(doc, "No mapping matched this PDF (check supplier hint & keywords).")
-                totals["failed"] += 1
-                continue
+            # --- Vendor-specific parser (if available) ---
+            vendor_used = None
+            result: Dict[str, object] = {}
+            hits: List[str] = []
+            errs: List[str] = []
+            if get_vendor_parser:
+                try:
+                    parser = get_vendor_parser((row.supplier or doc.supplier or ""), full_text)
+                except Exception as e:
+                    parser = None
+                    _append_log(doc, f"Vendor parser resolve error: {e}")
+                if parser:
+                    vendor_used = getattr(parser, "__name__", "vendor")
+                    _append_log(doc, f"Using vendor parser: {vendor_used}")
+                    try:
+                        parsed = parser(full_text) or {}
+                        # record vendor hits
+                        for k, v in parsed.items():
+                            if v is None or v == "":
+                                continue
+                            sample_val = (str(v)[:40] + '…') if len(str(v)) > 40 else str(v)
+                            hits.append(f"hit:{k}:{sample_val}")
+                        if hits:
+                            _append_log(doc, "Vendor hits: " + ", ".join(hits))
+                        result.update(parsed)
+                    except Exception as ve:
+                        _append_log(doc, f"Vendor parser error: {ve}")
 
-            _append_log(doc, f"Using mapping: {mapping.name} (supplier={getattr(mapping, 'supplier', '')}, priority={getattr(mapping, 'priority', '')})")
-            try:
-                rules = mapping.rules_for_engine()
-                _append_log(doc, "Rules: " + ", ".join([f"{r.get('field')}[{r.get('method') or 'Regex'}:{(r.get('label') or '').strip()}]" for r in rules]))
-            except Exception as e:
-                _append_log(doc, f"Rules export failed: {e}")
-                raise
+            # Decide if we still need mapping (core fields missing or no vendor parser)
+            core_needed = ["bill_no", "bill_date", "due_date", "amount"]
+            needs_mapping = True
+            if result:
+                needs_mapping = any(not result.get(k) for k in core_needed)
 
-            # Run rules
-            result, hits, errs = _apply_rules_to_text(rules, full_text, pages)
-            if hits:
-                _append_log(doc, "Hits: " + ", ".join(hits))
-            if errs:
-                _append_log(doc, "No-matches: " + ", ".join([e for e in errs if e.startswith("no_match:")]))
+            if needs_mapping:
+                # Select mapping (supplier on row or parent is a strong hint)
+                supplier_hint = row.supplier or doc.supplier
+                mapping = _select_mapping(supplier_hint=supplier_hint, full_text=full_text)
+                if not mapping:
+                    row.status = "Error"
+                    row.last_error = "No active Invoice Mapping matched this PDF."
+                    _append_log(doc, "No mapping matched this PDF (check supplier hint & keywords).")
+                    totals["failed"] += 1
+                    continue
+
+                _append_log(doc, f"Using mapping: {mapping.name} (supplier={getattr(mapping, 'supplier', '')}, priority={getattr(mapping, 'priority', '')})")
+                try:
+                    rules = mapping.rules_for_engine()
+                    _append_log(doc, "Rules: " + ", ".join([f"{r.get('field')}[{r.get('method') or 'Regex'}:{(r.get('label') or '').strip()}]" for r in rules]))
+                except Exception as e:
+                    _append_log(doc, f"Rules export failed: {e}")
+                    raise
+
+                # Run rules
+                m_result, m_hits, m_errs = _apply_rules_to_text(rules, full_text, pages)
+                # Merge: prefer vendor-parsed values; fill missing from mapping
+                for k, v in m_result.items():
+                    if (k not in result) or (result.get(k) in (None, "", 0, 0.0)):
+                        result[k] = v
+                hits.extend(m_hits)
+                errs.extend(m_errs)
+                if m_hits:
+                    _append_log(doc, "Hits: " + ", ".join(m_hits))
+                if m_errs:
+                    _append_log(doc, "No-matches: " + ", ".join([e for e in m_errs if e.startswith("no_match:")]))
+            else:
+                # We used a vendor parser and have the core fields
+                mapping = None
 
             # If any required fields are missing, fail the row
             required_missing = [e for e in errs if e.startswith("Missing required field:")]
@@ -497,7 +548,8 @@ def parse_files(name: str):
 
             # Store parsed_json
             parsed_json = {
-                "mapping": mapping.name,
+                "mapping": (mapping.name if mapping else None),
+                "vendor_parser": vendor_used,
                 "result": result,
                 "hits": hits,
                 "file_url": row.file,
@@ -653,7 +705,7 @@ def create_purchase_invoices(name: str):
 
             # Fallback item if nothing resolved
             if not item_code:
-                item_code = frappe.db.get_single_value("Buying Settings", "item") or None
+                item_code = frappe.db.get_single_value("Buying Settings", "default_item") or None
 
             pi.append("items", {
                 "item_code": item_code,

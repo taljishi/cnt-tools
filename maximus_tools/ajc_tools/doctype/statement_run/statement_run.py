@@ -110,12 +110,26 @@ def _require_mapping(doc):
 # ---------- Detection helpers ----------
 
 def _detect_from_header(header):
-    """Heuristically guess mapping keys from a header row (list[str])."""
+    """Heuristically guess mapping keys from a header row (list[str]).
+    - Normalizes punctuation/parentheses so headers like "Credit (Deposit)" work.
+    - Expands alias matching for credit/debit (deposit/withdrawal) and other common labels.
+    """
+    import re
+
+    # Keep original header strings for returning exact labels
     h = [(c or "").strip() for c in header]
-    hl = [c.lower() for c in h]
+
+    def norm(s: str) -> str:
+        # lowercase, replace punctuation with spaces, collapse spaces
+        s = (s or "").lower()
+        s = re.sub(r"[()\[\]{}_/\\.,;:\-]+", " ", s)
+        s = re.sub(r"\s+", " ", s).strip()
+        return s
+
+    hn = [norm(c) for c in h]
 
     def find_any(*needles):
-        for i, col in enumerate(hl):
+        for i, col in enumerate(hn):
             for n in needles:
                 if n in col:
                     return i
@@ -140,10 +154,17 @@ def _detect_from_header(header):
     di2 = find_any("description", "details", "narration", "remarks", "memo", "particulars")
     guesses["description_column"] = h[di2] if di2 is not None else None
 
-    # Amount vs Credit/Debit
+    # Amount vs Credit/Debit (with aliases)
     ai = find_any("amount", "transaction amount", "amt")
-    cri = find_any("credit", "cr")
-    dri = find_any("debit", "dr")
+
+    # Credit-like
+    cri = find_any(
+        "credit", "cr", "deposit", "credit deposit", "deposit amount", "amount credited", "credit amount"
+    )
+    # Debit-like
+    dri = find_any(
+        "debit", "dr", "withdrawal", "debit withdrawal", "withdrawal amount", "amount debited", "debit amount"
+    )
 
     if ai is not None and (cri is None or dri is None):
         guesses["amount_column"] = h[ai]
@@ -154,7 +175,7 @@ def _detect_from_header(header):
         guesses["has_credit_debit_columns"] = 1
 
     # Optional
-    bi = find_any("running balance", "available balance", "balance")
+    bi = find_any("running balance", "available balance", "balance", "closing balance", "ledger balance")
     if bi is not None:
         guesses["balance_column"] = h[bi]
     ri = find_any("reference", "ref", "cheque", "chq", "utr", "transaction id", "txn id")
@@ -209,7 +230,6 @@ def preview_rows(docname: str):
 
     doc = frappe.get_doc("Statement Run", docname)
     try:
-        _require_mapping(doc)
 
         if (doc.file_type or "").upper() != "CSV":
             frappe.throw("Only CSV preview is supported right now. Set File Type to CSV.")
@@ -251,10 +271,41 @@ def preview_rows(docname: str):
             return -val if neg else val
 
         def _parse_date(s: str) -> datetime:
+            raw = (s or "").strip()
+            if not raw:
+                raise ValueError("empty date")
+            # 1) Try the doc-specified format first
             fmt = (doc.date_format or "DD/MM/YYYY").upper()
             py = fmt.replace("YYYY", "%Y").replace("YY", "%y").replace("MM", "%m").replace("DD", "%d")
             py = py.replace("HH", "%H").replace("hh", "%H").replace("mm", "%M").replace("SS", "%S")
-            return datetime.strptime(s.strip(), py)
+            from datetime import datetime as _dt
+            try:
+                return _dt.strptime(raw, py)
+            except Exception:
+                pass
+            # 2) Fallbacks (common bank exports)
+            candidates = [
+                "%Y-%m-%d",
+                "%d-%m-%Y",
+                "%m-%d-%Y",
+                "%d/%m/%Y",
+                "%m/%d/%Y",
+                "%d-%b-%Y",
+                "%d %b %Y",
+                "%d %B %Y",
+                "%Y/%m/%d",
+                "%d.%m.%Y",
+                "%Y-%m-%d %H:%M:%S",
+                "%d/%m/%Y %H:%M:%S",
+                "%m/%d/%Y %H:%M:%S",
+            ]
+            for cf in candidates:
+                try:
+                    return _dt.strptime(raw, cf)
+                except Exception:
+                    continue
+            # 3) Give a clear error
+            raise ValueError(f"Unparsable date '{raw}' (expected like {fmt})")
 
         # Load file
         file_path = get_file_path(doc.source_file)
@@ -272,25 +323,47 @@ def preview_rows(docname: str):
         header_row = rows[skip] if rows and skip < len(rows) else []
         data_rows = rows[skip + 1:] if skip + 1 <= len(rows) else []
 
-        # Resolve indices
-        date_i = _resolve_index(header_row, doc.date_column)
-        desc_i = _resolve_index(header_row, doc.description_column)
-        amt_i = _resolve_index(header_row, doc.amount_column) if not doc.has_credit_debit_columns else None
-        cr_i = _resolve_index(header_row, doc.credit_column) if doc.has_credit_debit_columns else None
-        dr_i = _resolve_index(header_row, doc.debit_column) if doc.has_credit_debit_columns else None
-        bal_i = _resolve_index(header_row, doc.balance_column)
-        ref_i = _resolve_index(header_row, doc.reference_column)
+        # Try to auto-detect missing mapping from header
+        guesses = _detect_from_header(header_row) if header_row else {}
+
+        # Decide which mode to use locally (do not overwrite doc mapping)
+        local_has_cd = bool(doc.has_credit_debit_columns) or bool(guesses.get("has_credit_debit_columns"))
+
+        date_key = doc.date_column or guesses.get("date_column")
+        desc_key = doc.description_column or guesses.get("description_column")
+        amount_key = None
+        credit_key = None
+        debit_key = None
+
+        if local_has_cd:
+            credit_key = doc.credit_column or guesses.get("credit_column")
+            debit_key = doc.debit_column or guesses.get("debit_column")
+            # If credit/debit still not found, fall back to Amount if available
+            if not (credit_key and debit_key):
+                local_has_cd = False
+                amount_key = doc.amount_column or guesses.get("amount_column")
+        else:
+            amount_key = doc.amount_column or guesses.get("amount_column")
+
+        # Resolve indices using local keys
+        date_i = _resolve_index(header_row, date_key)
+        desc_i = _resolve_index(header_row, desc_key)
+        amt_i = _resolve_index(header_row, amount_key) if not local_has_cd else None
+        cr_i = _resolve_index(header_row, credit_key) if local_has_cd else None
+        dr_i = _resolve_index(header_row, debit_key) if local_has_cd else None
+        bal_i = _resolve_index(header_row, doc.balance_column or guesses.get("balance_column"))
+        ref_i = _resolve_index(header_row, doc.reference_column or guesses.get("reference_column"))
 
         missing_idx = []
         if date_i is None:
             missing_idx.append("Date Column")
         if desc_i is None:
             missing_idx.append("Description Column")
-        if getattr(doc, "has_credit_debit_columns", 0):
+        if local_has_cd:
             if cr_i is None:
-                missing_idx.append("Credit Column")
+                missing_idx.append("Credit (Deposit) Column")
             if dr_i is None:
-                missing_idx.append("Debit Column")
+                missing_idx.append("Debit (Withdrawal) Column")
         else:
             if amt_i is None:
                 missing_idx.append("Amount Column")
@@ -324,7 +397,7 @@ def preview_rows(docname: str):
             except Exception:
                 continue
 
-            if getattr(doc, "has_credit_debit_columns", 0):
+            if local_has_cd:
                 credit = _to_number(r[cr_i]) if cr_i is not None else 0.0
                 debit = _to_number(r[dr_i]) if dr_i is not None else 0.0
             else:
@@ -358,10 +431,10 @@ def preview_rows(docname: str):
                 sample.append({
                     "Date": dt.strftime("%Y-%m-%d") if dt else "",
                     "Description": desc,
-                    "Credit": round(credit, 3),
-                    "Debit": round(debit, 3),
+                    "Deposit": round(credit, 3),
+                    "Withdrawal": round(debit, 3),
                     "Balance": balance_str,
-                    "Reference": reference,
+                    "Reference Number": reference,
                 })
 
         total_rows = len(parsed_rows)
@@ -444,7 +517,6 @@ def create_bank_transactions(docname: str):
 
     doc = frappe.get_doc("Statement Run", docname)
     try:
-        _require_mapping(doc)
 
         if (doc.file_type or "").upper() != "CSV":
             frappe.throw("Only CSV import is supported right now.")
@@ -484,10 +556,41 @@ def create_bank_transactions(docname: str):
             return -val if neg else val
 
         def _parse_date(s: str) -> datetime:
+            raw = (s or "").strip()
+            if not raw:
+                raise ValueError("empty date")
+            # 1) Try the doc-specified format first
             fmt = (doc.date_format or "DD/MM/YYYY").upper()
             py = fmt.replace("YYYY", "%Y").replace("YY", "%y").replace("MM", "%m").replace("DD", "%d")
             py = py.replace("HH", "%H").replace("hh", "%H").replace("mm", "%M").replace("SS", "%S")
-            return datetime.strptime(s.strip(), py)
+            from datetime import datetime as _dt
+            try:
+                return _dt.strptime(raw, py)
+            except Exception:
+                pass
+            # 2) Fallbacks (common bank exports)
+            candidates = [
+                "%Y-%m-%d",
+                "%d-%m-%Y",
+                "%m-%d-%Y",
+                "%d/%m/%Y",
+                "%m/%d/%Y",
+                "%d-%b-%Y",
+                "%d %b %Y",
+                "%d %B %Y",
+                "%Y/%m/%d",
+                "%d.%m.%Y",
+                "%Y-%m-%d %H:%M:%S",
+                "%d/%m/%Y %H:%M:%S",
+                "%m/%d/%Y %H:%M:%S",
+            ]
+            for cf in candidates:
+                try:
+                    return _dt.strptime(raw, cf)
+                except Exception:
+                    continue
+            # 3) Give a clear error
+            raise ValueError(f"Unparsable date '{raw}' (expected like {fmt})")
 
         file_path = get_file_path(doc.source_file)
         with io.open(file_path, "r", encoding=doc.encoding or "utf-8", newline="") as fh:
@@ -498,13 +601,51 @@ def create_bank_transactions(docname: str):
         header_row = rows[skip] if rows and skip < len(rows) else []
         data_rows = rows[skip + 1:] if skip + 1 <= len(rows) else []
 
-        date_i = _resolve_index(header_row, doc.date_column)
-        desc_i = _resolve_index(header_row, doc.description_column)
-        amt_i = _resolve_index(header_row, doc.amount_column) if not doc.has_credit_debit_columns else None
-        cr_i = _resolve_index(header_row, doc.credit_column) if doc.has_credit_debit_columns else None
-        dr_i = _resolve_index(header_row, doc.debit_column) if doc.has_credit_debit_columns else None
-        bal_i = _resolve_index(header_row, doc.balance_column)
-        ref_i = _resolve_index(header_row, doc.reference_column)
+        # Try to auto-detect missing mapping from header
+        guesses = _detect_from_header(header_row) if header_row else {}
+
+        local_has_cd = bool(doc.has_credit_debit_columns) or bool(guesses.get("has_credit_debit_columns"))
+
+        date_key = doc.date_column or guesses.get("date_column")
+        desc_key = doc.description_column or guesses.get("description_column")
+        amount_key = None
+        credit_key = None
+        debit_key = None
+
+        if local_has_cd:
+            credit_key = doc.credit_column or guesses.get("credit_column")
+            debit_key = doc.debit_column or guesses.get("debit_column")
+            if not (credit_key and debit_key):
+                local_has_cd = False
+                amount_key = doc.amount_column or guesses.get("amount_column")
+        else:
+            amount_key = doc.amount_column or guesses.get("amount_column")
+
+        # Resolve indices using local keys
+        date_i = _resolve_index(header_row, date_key)
+        desc_i = _resolve_index(header_row, desc_key)
+        amt_i = _resolve_index(header_row, amount_key) if not local_has_cd else None
+        cr_i = _resolve_index(header_row, credit_key) if local_has_cd else None
+        dr_i = _resolve_index(header_row, debit_key) if local_has_cd else None
+        bal_i = _resolve_index(header_row, doc.balance_column or guesses.get("balance_column"))
+        ref_i = _resolve_index(header_row, doc.reference_column or guesses.get("reference_column"))
+
+        # Validate mapping availability before processing
+        missing_idx = []
+        if date_i is None:
+            missing_idx.append("Date Column")
+        if desc_i is None:
+            missing_idx.append("Description Column")
+        if local_has_cd:
+            if cr_i is None:
+                missing_idx.append("Credit (Deposit) Column")
+            if dr_i is None:
+                missing_idx.append("Debit (Withdrawal) Column")
+        else:
+            if amt_i is None:
+                missing_idx.append("Amount Column")
+        if missing_idx:
+            frappe.throw("Mapping didn't match the header row. Missing/invalid: " + ", ".join(missing_idx))
 
         created = 0
         skipped = 0
@@ -522,7 +663,7 @@ def create_bank_transactions(docname: str):
             desc = r[desc_i] if desc_i is not None else ""
             reference = r[ref_i] if ref_i is not None else ""
 
-            if getattr(doc, "has_credit_debit_columns", 0):
+            if local_has_cd:
                 credit = _to_number(r[cr_i]) if cr_i is not None else 0.0
                 debit = _to_number(r[dr_i]) if dr_i is not None else 0.0
             else:

@@ -151,7 +151,7 @@ function show_results_modal(frm) {
         </tbody>
       </table>
     </div>
-    <div class="mt-2 text-muted">${__('Full list is stored on this document (result_json).')}</div>
+    <div class="mt-2 text-muted">${__('Full list is stored on this document (Result JSONn).')}</div>
   `;
 
   d.$body.html(table);
