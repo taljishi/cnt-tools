@@ -1,13 +1,13 @@
 # Maximus Tools
 
-Maximus Tools is a collection of ERPNext utilities designed to automate data imports, reconciliations, and integrations with external systems.
-It’s designed to streamline repetitive tasks, improve data consistency, and enhance overall efficiency across departments.
+Maximus Tools is a collection of ERPNext utilities designed to automate data imports and integrations with external systems.
+It’s designed to streamline repetitive tasks, improve data consistency, and enhance overall efficiency across ERPNext.
 
 ## 🚀 Features
 
 - **Employee Checkin Automation**  
   Generate and manage Employee Checkins from external sources (e.g., biometric or access control systems) directly in ERPNext.  
-  Tested with **2N Access Unit M**. Export each device event, then import it into this tool to generate Employee Checkins automatically.
+  Tested with **2N Access Unit M**. Export each device event CSV file, then import it into this tool to generate Employee Checkins automatically.
 
 - **Bank Statement Formatter**  
   Parse, clean, and structure imported bank statement data for faster reconciliation and error-free statement runs.  
@@ -28,8 +28,7 @@ bench --site your-site.local install-app maximus_tools
 ## 🧩 Compatibility
 - **ERPNext:** v14+
 
----
-### Planned Features
+### 💫 Planned Features
 
 - **Invoice Run (v2)**  
   A complete rebuild of the previous experimental module for automated invoice creation and mapping.  
