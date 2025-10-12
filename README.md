@@ -28,7 +28,7 @@ bench --site your-site.local install-app maximus_tools
 ## 🧩 Compatibility
 - **ERPNext:** v14+
 
-### 💫 Planned Features
+## 💫 Planned Features
 
 - **Invoice Run (v2)**  
   A complete rebuild of the previous experimental module for automated invoice creation and mapping.  
