@@ -6,18 +6,18 @@ include *.py
 include *.txt
 
 # Package data inside the app
-recursive-include maximus_tools *.css
-recursive-include maximus_tools *.csv
-recursive-include maximus_tools *.html
-recursive-include maximus_tools *.ico
-recursive-include maximus_tools *.js
-recursive-include maximus_tools *.json
-recursive-include maximus_tools *.md
-recursive-include maximus_tools *.png
-recursive-include maximus_tools *.py
-recursive-include maximus_tools *.svg
-recursive-include maximus_tools *.txt
-recursive-exclude maximus_tools *.pyc
+recursive-include cnt_tools *.css
+recursive-include cnt_tools *.csv
+recursive-include cnt_tools *.html
+recursive-include cnt_tools *.ico
+recursive-include cnt_tools *.js
+recursive-include cnt_tools *.json
+recursive-include cnt_tools *.md
+recursive-include cnt_tools *.png
+recursive-include cnt_tools *.py
+recursive-include cnt_tools *.svg
+recursive-include cnt_tools *.txt
+recursive-exclude cnt_tools *.pyc
 
 # Fixtures (exported via hooks.py / bench export-fixtures)
 recursive-include fixtures *.jsonrecursive-include fixtures *.json

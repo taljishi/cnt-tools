@@ -1,6 +1,6 @@
-# Maximus Tools
+# CNT Tools
 
-Maximus Tools is a collection of ERPNext utilities designed to automate data imports and integrations with external systems.
+CNT Tools is a collection of ERPNext tools/utilities designed to automate data imports and integrations with external systems.
 It’s designed to streamline repetitive tasks, improve data consistency, and enhance overall efficiency across ERPNext.
 
 ## 🚀 Features
@@ -19,10 +19,10 @@ From your bench directory:
 
 ```bash
 # Get the app
-bench get-app https://github.com/taljishi/maximus-tools.git
+bench get-app https://github.com/cnt-bh/cnt-tools.git
 
 # Install it on a site
-bench --site your-site.local install-app maximus_tools
+bench --site your-site.local install-app cnt_tools
 ```
 
 ## 🧩 Compatibility

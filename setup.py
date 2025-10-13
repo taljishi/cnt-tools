@@ -3,16 +3,16 @@ from setuptools import setup, find_packages
 with open("requirements.txt") as f:
 	install_requires = f.read().strip().split("\n")
 
-# get version from __version__ variable in maximus_tools/__init__.py
-from maximus_tools import __version__ as version
+# get version from __version__ variable in cnt_tools/__init__.py
+from cnt_tools import __version__ as version
 
 setup(
-	name="maximus_tools",
+	name="cnt_tools",
 	version=version,
-	description="Tooll for generating employee checkin, bank statatement formatting, and bill creation",
+	description="CNT Tools - ERPNext tools by Cloud Nine Technologies",
 	author="Cloud Nine Technologies (CNT)",
-	author_email="talal@aljishi.com",
-	packages=find_packages(include=['maximus_tools', 'maximus_tools.*']),
+	author_email="info@cnt.bh",
+	packages=find_packages(include=['cnt_tools', 'cnt_tools.*']),
 	zip_safe=False,
 	include_package_data=True,
 	install_requires=install_requires
