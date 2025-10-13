@@ -220,18 +220,19 @@ app_color = "blue"
 
 # Export only what belongs to this app
 fixtures = [
-    # Doctypes that HAVE a "module" field
-    {"dt": "Client Script",   "filters": [["module", "=", "CNT Tools"]]},
-    {"dt": "Print Format",    "filters": [["module", "=", "CNT Tools"]]},
-    {"dt": "Server Script",   "filters": [["module", "=", "CNT Tools"]]},
-    {"dt": "Notification",    "filters": [["module", "=", "CNT Tools"]]},
-
-    # Doctypes WITHOUT a "module" field → use naming convention
-    {"dt": "Workflow",        "filters": [["name", "like", "CNT %"]]},
-    {"dt": "Workflow State",  "filters": [["name", "like", "CNT %"]]},
-    {"dt": "Workflow Action", "filters": [["name", "like", "CNT %"]]},
-
-    # Also no module: use a prefix you actually use in your CF/PS names
-    {"dt": "Custom Field",    "filters": [["name", "like", "cnt_%"]]},
-    {"dt": "Property Setter", "filters": [["name", "like", "cnt_%"]]},
+    {
+        "doctype": "Custom Field",
+        "filters": [
+            ["dt", "=", "Employee Checkin"],
+            ["fieldname", "=", "custom_checkin_run"],
+        ],
+    },
+    # (Optional) If you want to ship any Property Setters you made via Customize Form:
+    # {
+    #     "doctype": "Property Setter",
+    #     "filters": [
+    #         ["doc_type", "=", "Employee Checkin"],
+    #         ["field_name", "=", "custom_checkin_run"],
+    #     ],
+    # },
 ]
