@@ -25,6 +25,18 @@ bench get-app https://github.com/cnt-bh/cnt-tools.git
 bench --site your-site.local install-app cnt_tools
 ```
 
+### Notes
+
+- Run `bench migrate` after installation to apply fixtures (e.g., custom fields, workspace, scripts).
+- If updating an existing installation, pull the latest version and migrate:
+  ```
+  cd apps/cnt_tools
+  git pull
+  bench --site your-site.local migrate
+  bench clear-cache
+  ```
+- Ensure SSH keys are configured if using private repositories.
+
 ## 🧩 Compatibility
 - **ERPNext:** v14+
 
@@ -36,6 +48,12 @@ bench --site your-site.local install-app cnt_tools
 
 - **Enhanced Device Integration**  
   Extend the Employee Checkin Automation to support additional biometric and access control systems through API sync, not just file import.
+
+## 👥 Maintainers
+
+**Developed and maintained by:**  
+[Cloud Nine Technologies (CNT)](https://cnt.bh)  
+A Bahrain-based digital transformation company specializing in digital solutions and process automation.
 
 ## 📜 License
 
