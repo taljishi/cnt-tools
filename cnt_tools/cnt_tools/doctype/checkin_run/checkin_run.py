@@ -7,6 +7,7 @@ from datetime import timedelta
 import frappe
 from frappe.model.document import Document
 from frappe.utils import get_datetime, cstr, now_datetime, cint
+from dateutil import parser as duparser
 
 # Ensure Frappe can properly import the Checkin Run DocType
 class CheckinRun(Document):
@@ -29,6 +30,22 @@ HUMAN_STATUSES = {
     "FAILED": "Failed",
     "SKIPPED": "Skipped",
 }
+
+def _site_tz():
+    """Return the site timezone name (v15/v14 compatible), fallback to 'UTC'."""
+    # v15
+    try:
+        from frappe.utils import get_system_timezone
+        tz = get_system_timezone()
+        if tz:
+            return tz
+    except Exception:
+        pass
+    # v14
+    try:
+        return frappe.utils.get_time_zone() or "UTC"
+    except Exception:
+        return "UTC"
 
 def _result_row(row, status, detail="", name=""):
     """Compact result object for result_json."""
@@ -127,36 +144,60 @@ def _iter_rows_headerless(text, dialect):
         yield ts_raw, last_raw, row
 
 def _normalize_time(s):
-    # If 2N export is UTC, convert accordingly before comparing.
-    return get_datetime(s)
+    """Parse incoming timestamp to an **aware UTC** datetime.
+    - If string is ISO8601 with offset (e.g. 2025-10-13T09:26:01+03:00), preserve offset and convert to UTC.
+    - If naive, assume site timezone and convert to UTC.
+    """
+    if not s:
+        return get_datetime(s)
+    # Prefer dateutil to preserve offsets
+    try:
+        dt = duparser.isoparse(cstr(s))
+    except Exception:
+        dt = get_datetime(s)
+    # Localize naive to site tz, then convert to UTC
+    if not getattr(dt, "tzinfo", None):
+        try:
+            site_tz = pytz.timezone(_site_tz())
+            dt = site_tz.localize(dt)
+        except Exception:
+            dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(pytz.UTC)
 
 def _after_cutoff(ts, cutoff):
     # strict >
     return _to_utc(ts) > _to_utc(cutoff)
 
 def _to_utc(dt_like):
-    """Convert any datetime-like (string/naive/aware) to an AWARE UTC datetime."""
-    dt = get_datetime(dt_like)
-    # If naive, assume site's timezone, then convert to UTC
+    """Convert any datetime-like (string/naive/aware) to an **aware UTC** datetime."""
+    if isinstance(dt_like, str):
+        try:
+            dt = duparser.isoparse(dt_like)
+        except Exception:
+            dt = get_datetime(dt_like)
+    else:
+        dt = get_datetime(dt_like)
     if not getattr(dt, "tzinfo", None):
         try:
-            tz_name = frappe.utils.get_time_zone()
-            dt = pytz.timezone(tz_name).localize(dt)
+            dt = pytz.timezone(_site_tz()).localize(dt)
         except Exception:
-            # Fallback: treat as UTC if site tz not available
             dt = dt.replace(tzinfo=timezone.utc)
-    return dt.astimezone(timezone.utc)
+    return dt.astimezone(pytz.UTC)
 
 
 def _to_site_naive(dt_like):
-    """Return site-local time with tzinfo stripped (naive) for DB storage."""
-    dt = get_datetime(dt_like)
+    """Return site-local time with tzinfo stripped (naive) for DB/storage & preview."""
+    if isinstance(dt_like, str):
+        try:
+            dt = duparser.isoparse(dt_like)
+        except Exception:
+            dt = get_datetime(dt_like)
+    else:
+        dt = get_datetime(dt_like)
     try:
-        tz_name = frappe.utils.get_time_zone()
-        site_tz = pytz.timezone(tz_name)
+        site_tz = pytz.timezone(_site_tz())
     except Exception:
         site_tz = timezone.utc
-    # If input is naive, assume it is already in site tz; else convert to site tz
     if not getattr(dt, "tzinfo", None):
         dt_site = site_tz.localize(dt)
     else:
@@ -584,7 +625,8 @@ def generate_checkins(name: str):
             results.append(_result_row(e, SKIPPED, detail="Row not ready or no employee"))
             continue
 
-        ts = get_datetime(e.get("event_time"))
+        # Convert site-local stored value back to UTC-naive for reliable compare/insert
+        ts = _to_site_naive(e.get("event_time"))
         emp = e.get("matched_employee")
 
         # Idempotency: skip if a checkin exists within the window

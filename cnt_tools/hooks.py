@@ -227,6 +227,13 @@ fixtures = [
             ["fieldname", "=", "custom_checkin_run"],
         ],
     },
+    {
+        "doctype": "Custom Field",
+        "filters": [
+            ["dt", "=", "Shift Type"],
+            ["fieldname", "=", "custom_disabled"],
+        ],
+    },
     # (Optional) If you want to ship any Property Setters you made via Customize Form:
     # {
     #     "doctype": "Property Setter",
