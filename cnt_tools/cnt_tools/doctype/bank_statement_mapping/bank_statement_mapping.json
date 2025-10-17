@@ -180,7 +180,7 @@
       "fieldname": "find_replace",
       "fieldtype": "Table",
       "label": "Find/Replace Rules",
-      "options": "Statement Find and Replace Rule"
+      "options": "Bank Statement Find and Replace Rule"
      }
     ],
     "index_web_pages_for_search": 1,
