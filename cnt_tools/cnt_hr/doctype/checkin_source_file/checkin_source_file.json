@@ -1,77 +1,77 @@
 {
- "actions": [],
- "allow_rename": 1,
- "creation": "2025-10-13 11:36:02.379669",
- "doctype": "DocType",
- "editable_grid": 1,
- "engine": "InnoDB",
- "field_order": [
-  "file",
-  "device_name",
-  "status",
-  "parsed_count",
-  "ready_count",
-  "last_error",
-  "sha1"
- ],
- "fields": [
-  {
-   "fieldname": "file",
-   "fieldtype": "Attach",
-   "in_list_view": 1,
-   "label": "File",
-   "reqd": 1
-  },
-  {
-   "fieldname": "device_name",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Device Name",
-   "options": "Checkin Access Device"
-  },
-  {
-   "default": "Draft",
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Draft\nParsed\nSkipped\nError",
-   "read_only": 1
-  },
-  {
-   "fieldname": "parsed_count",
-   "fieldtype": "Int",
-   "label": "Parsed Count",
-   "read_only": 1
-  },
-  {
-   "fieldname": "ready_count",
-   "fieldtype": "Int",
-   "label": "Ready Count",
-   "read_only": 1
-  },
-  {
-   "fieldname": "last_error",
-   "fieldtype": "Small Text",
-   "label": "Last Error",
-   "read_only": 1
-  },
-  {
-   "fieldname": "sha1",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "sha1"
-  }
- ],
- "index_web_pages_for_search": 1,
- "istable": 1,
- "links": [],
- "modified": "2025-10-13 12:31:12.119740",
- "modified_by": "Administrator",
- "module": "CNT Tools",
- "name": "Checkin Source File",
- "owner": "Administrator",
- "permissions": [],
- "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2025-10-13 11:36:02.379669",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "file",
+    "device_name",
+    "status",
+    "parsed_count",
+    "ready_count",
+    "last_error",
+    "sha1"
+  ],
+  "fields": [
+    {
+      "fieldname": "file",
+      "fieldtype": "Attach",
+      "in_list_view": 1,
+      "label": "File",
+      "reqd": 1
+    },
+    {
+      "fieldname": "device_name",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Device Name",
+      "options": "Checkin Access Device"
+    },
+    {
+      "default": "Draft",
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Draft\nParsed\nSkipped\nError",
+      "read_only": 1
+    },
+    {
+      "fieldname": "parsed_count",
+      "fieldtype": "Int",
+      "label": "Parsed Count",
+      "read_only": 1
+    },
+    {
+      "fieldname": "ready_count",
+      "fieldtype": "Int",
+      "label": "Ready Count",
+      "read_only": 1
+    },
+    {
+      "fieldname": "last_error",
+      "fieldtype": "Small Text",
+      "label": "Last Error",
+      "read_only": 1
+    },
+    {
+      "fieldname": "sha1",
+      "fieldtype": "Data",
+      "hidden": 1,
+      "label": "sha1"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2025-10-13 12:31:12.119740",
+  "modified_by": "Administrator",
+  "module": "CNT HR",
+  "name": "Checkin Source File",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
 }

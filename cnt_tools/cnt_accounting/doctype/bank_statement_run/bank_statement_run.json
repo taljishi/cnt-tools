@@ -1,323 +1,323 @@
 {
- "actions": [],
- "allow_import": 1,
- "allow_rename": 1,
- "autoname": "naming_series:",
- "creation": "2025-10-13 16:10:42.740389",
- "default_view": "List",
- "doctype": "DocType",
- "editable_grid": 1,
- "engine": "InnoDB",
- "field_order": [
-  "naming_series",
-  "bank_account",
-  "currency",
-  "source_file",
-  "lock_mapping_fields",
-  "column_break_xljwi",
-  "statement_start",
-  "statement_end",
-  "source_file_mapping_section",
-  "date_format",
-  "has_credit_debit_columns",
-  "date_column",
-  "description_column",
-  "amount_column",
-  "credit_column",
-  "debit_column",
-  "balance_column",
-  "reference_column",
-  "preview_json",
-  "status",
-  "advanced_section",
-  "file_type",
-  "encoding",
-  "delimiter",
-  "skip_header_rows",
-  "decimal_separator",
-  "remove_thousand_separators",
-  "negative_parentheses_as_minus",
-  "ignore_rows_containing",
-  "summary_section",
-  "rows_detected",
-  "debit_count",
-  "credit_count",
-  "beginning_balance",
-  "column_break_luk1j",
-  "imported_count",
-  "debit_sum",
-  "credit_sum",
-  "ending_balance",
-  "section_break_7xjai",
-  "failure_reason"
- ],
- "fields": [
-  {
-   "fieldname": "bank_account",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Bank Account",
-   "options": "Bank Account",
-   "reqd": 1
-  },
-  {
-   "fieldname": "currency",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Currency",
-   "read_only": 1
-  },
-  {
-   "default": "CSV",
-   "fieldname": "file_type",
-   "fieldtype": "Select",
-   "label": "File Type",
-   "options": "CSV\nXLSX"
-  },
-  {
-   "default": "utf-8",
-   "fieldname": "encoding",
-   "fieldtype": "Data",
-   "label": "Encoding"
-  },
-  {
-   "default": ",",
-   "depends_on": "eval:doc.file_type===\"CSV\"",
-   "fieldname": "delimiter",
-   "fieldtype": "Data",
-   "label": "Delimiter"
-  },
-  {
-   "description": "DD/MM/YYYY or YYYY-MM-DD",
-   "fieldname": "date_format",
-   "fieldtype": "Data",
-   "label": "Date Format"
-  },
-  {
-   "default": "0",
-   "fieldname": "has_credit_debit_columns",
-   "fieldtype": "Check",
-   "label": "Has Credit/Debit Columns",
-   "read_only": 1
-  },
-  {
-   "fieldname": "date_column",
-   "fieldtype": "Data",
-   "label": "Date Column"
-  },
-  {
-   "fieldname": "description_column",
-   "fieldtype": "Data",
-   "label": "Description Column",
-   "read_only_depends_on": "eval:doc.lock_mapping_fields==1"
-  },
-  {
-   "fieldname": "amount_column",
-   "fieldtype": "Data",
-   "label": "Amount Column"
-  },
-  {
-   "fieldname": "credit_column",
-   "fieldtype": "Data",
-   "label": "Credit Column"
-  },
-  {
-   "fieldname": "debit_column",
-   "fieldtype": "Data",
-   "label": "Debit Column"
-  },
-  {
-   "fieldname": "balance_column",
-   "fieldtype": "Data",
-   "label": "Balance Column"
-  },
-  {
-   "fieldname": "reference_column",
-   "fieldtype": "Data",
-   "label": "Reference Column"
-  },
-  {
-   "default": "0",
-   "fieldname": "skip_header_rows",
-   "fieldtype": "Int",
-   "label": "Skip Header Rows"
-  },
-  {
-   "default": "1",
-   "fieldname": "remove_thousand_separators",
-   "fieldtype": "Check",
-   "label": "Remove Thousand Separators"
-  },
-  {
-   "default": ".",
-   "fieldname": "decimal_separator",
-   "fieldtype": "Select",
-   "label": "Decimal Separator",
-   "options": ".\n,"
-  },
-  {
-   "fieldname": "statement_start",
-   "fieldtype": "Date",
-   "label": "Statement Start"
-  },
-  {
-   "fieldname": "statement_end",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Statement End"
-  },
-  {
-   "fieldname": "rows_detected",
-   "fieldtype": "Int",
-   "label": "Rows Detected",
-   "read_only": 1
-  },
-  {
-   "fieldname": "preview_json",
-   "fieldtype": "Long Text",
-   "hidden": 1,
-   "label": "Preview JSON"
-  },
-  {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Status",
-   "options": "Draft\nParsed\nImported\nFailed",
-   "read_only": 1
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "advanced_section",
-   "fieldtype": "Section Break",
-   "label": "Advanced"
-  },
-  {
-   "default": "1",
-   "fieldname": "negative_parentheses_as_minus",
-   "fieldtype": "Check",
-   "label": "Negative Parentheses as Minus"
-  },
-  {
-   "description": "One term per line; matching descriptions will be skipped in preview/import.",
-   "fieldname": "ignore_rows_containing",
-   "fieldtype": "Small Text",
-   "label": "Ignore Rows Containing"
-  },
-  {
-   "default": "1",
-   "fieldname": "lock_mapping_fields",
-   "fieldtype": "Check",
-   "label": "Lock Mapping Fields"
-  },
-  {
-   "fieldname": "column_break_xljwi",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "source_file",
-   "fieldtype": "Attach",
-   "label": "Source File",
-   "reqd": 1
-  },
-  {
-   "collapsible": 1,
-   "collapsible_depends_on": "eval:doc.lock_mapping_fields==0",
-   "fieldname": "source_file_mapping_section",
-   "fieldtype": "Section Break",
-   "label": "Source File Mapping"
-  },
-  {
-   "fieldname": "naming_series",
-   "fieldtype": "Select",
-   "label": "Naming Series"
-  },
-  {
-   "fieldname": "summary_section",
-   "fieldtype": "Section Break",
-   "label": "Summary"
-  },
-  {
-   "fieldname": "beginning_balance",
-   "fieldtype": "Currency",
-   "label": "Beginning Balance",
-   "read_only": 1
-  },
-  {
-   "fieldname": "ending_balance",
-   "fieldtype": "Currency",
-   "label": "Ending Balance",
-   "read_only": 1
-  },
-  {
-   "fieldname": "debit_count",
-   "fieldtype": "Int",
-   "label": "Debit Count",
-   "read_only": 1
-  },
-  {
-   "fieldname": "debit_sum",
-   "fieldtype": "Currency",
-   "label": "Debit Sum",
-   "read_only": 1
-  },
-  {
-   "fieldname": "credit_count",
-   "fieldtype": "Int",
-   "label": "Credit Count",
-   "read_only": 1
-  },
-  {
-   "fieldname": "credit_sum",
-   "fieldtype": "Currency",
-   "label": "Credit Sum",
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break_luk1j",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "section_break_7xjai",
-   "fieldtype": "Section Break",
-   "hide_border": 1
-  },
-  {
-   "fieldname": "failure_reason",
-   "fieldtype": "Small Text",
-   "label": "Failure Reason",
-   "read_only": 1
-  },
-  {
-   "fieldname": "imported_count",
-   "fieldtype": "Int",
-   "label": "Imported Count",
-   "read_only": 1
-  }
- ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-10-13 16:11:43.597967",
- "modified_by": "Administrator",
- "module": "CNT Tools",
- "name": "Bank Statement Run",
- "naming_rule": "By \"Naming Series\" field",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+  "actions": [],
+  "allow_import": 1,
+  "allow_rename": 1,
+  "autoname": "naming_series:",
+  "creation": "2025-10-13 16:10:42.740389",
+  "default_view": "List",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "naming_series",
+    "bank_account",
+    "currency",
+    "source_file",
+    "lock_mapping_fields",
+    "column_break_xljwi",
+    "statement_start",
+    "statement_end",
+    "source_file_mapping_section",
+    "date_format",
+    "has_credit_debit_columns",
+    "date_column",
+    "description_column",
+    "amount_column",
+    "credit_column",
+    "debit_column",
+    "balance_column",
+    "reference_column",
+    "preview_json",
+    "status",
+    "advanced_section",
+    "file_type",
+    "encoding",
+    "delimiter",
+    "skip_header_rows",
+    "decimal_separator",
+    "remove_thousand_separators",
+    "negative_parentheses_as_minus",
+    "ignore_rows_containing",
+    "summary_section",
+    "rows_detected",
+    "debit_count",
+    "credit_count",
+    "beginning_balance",
+    "column_break_luk1j",
+    "imported_count",
+    "debit_sum",
+    "credit_sum",
+    "ending_balance",
+    "section_break_7xjai",
+    "failure_reason"
+  ],
+  "fields": [
+    {
+      "fieldname": "bank_account",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Bank Account",
+      "options": "Bank Account",
+      "reqd": 1
+    },
+    {
+      "fieldname": "currency",
+      "fieldtype": "Data",
+      "hidden": 1,
+      "label": "Currency",
+      "read_only": 1
+    },
+    {
+      "default": "CSV",
+      "fieldname": "file_type",
+      "fieldtype": "Select",
+      "label": "File Type",
+      "options": "CSV\nXLSX"
+    },
+    {
+      "default": "utf-8",
+      "fieldname": "encoding",
+      "fieldtype": "Data",
+      "label": "Encoding"
+    },
+    {
+      "default": ",",
+      "depends_on": "eval:doc.file_type===\"CSV\"",
+      "fieldname": "delimiter",
+      "fieldtype": "Data",
+      "label": "Delimiter"
+    },
+    {
+      "description": "DD/MM/YYYY or YYYY-MM-DD",
+      "fieldname": "date_format",
+      "fieldtype": "Data",
+      "label": "Date Format"
+    },
+    {
+      "default": "0",
+      "fieldname": "has_credit_debit_columns",
+      "fieldtype": "Check",
+      "label": "Has Credit/Debit Columns",
+      "read_only": 1
+    },
+    {
+      "fieldname": "date_column",
+      "fieldtype": "Data",
+      "label": "Date Column"
+    },
+    {
+      "fieldname": "description_column",
+      "fieldtype": "Data",
+      "label": "Description Column",
+      "read_only_depends_on": "eval:doc.lock_mapping_fields==1"
+    },
+    {
+      "fieldname": "amount_column",
+      "fieldtype": "Data",
+      "label": "Amount Column"
+    },
+    {
+      "fieldname": "credit_column",
+      "fieldtype": "Data",
+      "label": "Credit Column"
+    },
+    {
+      "fieldname": "debit_column",
+      "fieldtype": "Data",
+      "label": "Debit Column"
+    },
+    {
+      "fieldname": "balance_column",
+      "fieldtype": "Data",
+      "label": "Balance Column"
+    },
+    {
+      "fieldname": "reference_column",
+      "fieldtype": "Data",
+      "label": "Reference Column"
+    },
+    {
+      "default": "0",
+      "fieldname": "skip_header_rows",
+      "fieldtype": "Int",
+      "label": "Skip Header Rows"
+    },
+    {
+      "default": "1",
+      "fieldname": "remove_thousand_separators",
+      "fieldtype": "Check",
+      "label": "Remove Thousand Separators"
+    },
+    {
+      "default": ".",
+      "fieldname": "decimal_separator",
+      "fieldtype": "Select",
+      "label": "Decimal Separator",
+      "options": ".\n,"
+    },
+    {
+      "fieldname": "statement_start",
+      "fieldtype": "Date",
+      "label": "Statement Start"
+    },
+    {
+      "fieldname": "statement_end",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "Statement End"
+    },
+    {
+      "fieldname": "rows_detected",
+      "fieldtype": "Int",
+      "label": "Rows Detected",
+      "read_only": 1
+    },
+    {
+      "fieldname": "preview_json",
+      "fieldtype": "Long Text",
+      "hidden": 1,
+      "label": "Preview JSON"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Status",
+      "options": "Draft\nParsed\nImported\nFailed",
+      "read_only": 1
+    },
+    {
+      "collapsible": 1,
+      "fieldname": "advanced_section",
+      "fieldtype": "Section Break",
+      "label": "Advanced"
+    },
+    {
+      "default": "1",
+      "fieldname": "negative_parentheses_as_minus",
+      "fieldtype": "Check",
+      "label": "Negative Parentheses as Minus"
+    },
+    {
+      "description": "One term per line; matching descriptions will be skipped in preview/import.",
+      "fieldname": "ignore_rows_containing",
+      "fieldtype": "Small Text",
+      "label": "Ignore Rows Containing"
+    },
+    {
+      "default": "1",
+      "fieldname": "lock_mapping_fields",
+      "fieldtype": "Check",
+      "label": "Lock Mapping Fields"
+    },
+    {
+      "fieldname": "column_break_xljwi",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "source_file",
+      "fieldtype": "Attach",
+      "label": "Source File",
+      "reqd": 1
+    },
+    {
+      "collapsible": 1,
+      "collapsible_depends_on": "eval:doc.lock_mapping_fields==0",
+      "fieldname": "source_file_mapping_section",
+      "fieldtype": "Section Break",
+      "label": "Source File Mapping"
+    },
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series"
+    },
+    {
+      "fieldname": "summary_section",
+      "fieldtype": "Section Break",
+      "label": "Summary"
+    },
+    {
+      "fieldname": "beginning_balance",
+      "fieldtype": "Currency",
+      "label": "Beginning Balance",
+      "read_only": 1
+    },
+    {
+      "fieldname": "ending_balance",
+      "fieldtype": "Currency",
+      "label": "Ending Balance",
+      "read_only": 1
+    },
+    {
+      "fieldname": "debit_count",
+      "fieldtype": "Int",
+      "label": "Debit Count",
+      "read_only": 1
+    },
+    {
+      "fieldname": "debit_sum",
+      "fieldtype": "Currency",
+      "label": "Debit Sum",
+      "read_only": 1
+    },
+    {
+      "fieldname": "credit_count",
+      "fieldtype": "Int",
+      "label": "Credit Count",
+      "read_only": 1
+    },
+    {
+      "fieldname": "credit_sum",
+      "fieldtype": "Currency",
+      "label": "Credit Sum",
+      "read_only": 1
+    },
+    {
+      "fieldname": "column_break_luk1j",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "section_break_7xjai",
+      "fieldtype": "Section Break",
+      "hide_border": 1
+    },
+    {
+      "fieldname": "failure_reason",
+      "fieldtype": "Small Text",
+      "label": "Failure Reason",
+      "read_only": 1
+    },
+    {
+      "fieldname": "imported_count",
+      "fieldtype": "Int",
+      "label": "Imported Count",
+      "read_only": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-10-13 16:11:43.597967",
+  "modified_by": "Administrator",
+  "module": "CNT Accounting",
+  "name": "Bank Statement Run",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
 }

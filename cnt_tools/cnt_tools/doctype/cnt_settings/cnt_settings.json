@@ -20,7 +20,12 @@
   "cnt_app_icon",
   "developer_mode_local",
   "allow_unsafe_scripts",
-  "user_rile_tab"
+  "tab_3_tab",
+  "hr_addon",
+  "accounting_addon",
+  "column_break_bwkl",
+  "fleet_management",
+  "selling_addon"
  ],
  "fields": [
   {
@@ -67,11 +72,6 @@
    "label": "CNT App Icon"
   },
   {
-   "fieldname": "user_rile_tab",
-   "fieldtype": "Tab Break",
-   "label": "User Rile"
-  },
-  {
    "default": "0",
    "description": "For development environments only.",
    "fieldname": "allow_unsafe_scripts",
@@ -107,12 +107,45 @@
    "fieldtype": "Link",
    "label": "Default Doctype for Automation",
    "options": "DocType"
+  },
+  {
+   "fieldname": "tab_3_tab",
+   "fieldtype": "Tab Break",
+   "label": "Modules"
+  },
+  {
+   "default": "0",
+   "fieldname": "hr_addon",
+   "fieldtype": "Check",
+   "label": "HR Add-on"
+  },
+  {
+   "default": "0",
+   "fieldname": "accounting_addon",
+   "fieldtype": "Check",
+   "label": "Accounting Add-on"
+  },
+  {
+   "fieldname": "column_break_bwkl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "fleet_management",
+   "fieldtype": "Check",
+   "label": "Fleet Management"
+  },
+  {
+   "default": "0",
+   "fieldname": "selling_addon",
+   "fieldtype": "Check",
+   "label": "Selling Add-on"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-10-18 00:55:27.481907",
+ "modified": "2025-10-18 18:00:47.158843",
  "modified_by": "Administrator",
  "module": "CNT Tools",
  "name": "CNT Settings",
