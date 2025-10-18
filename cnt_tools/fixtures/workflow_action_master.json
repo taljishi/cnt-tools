@@ -58,23 +58,9 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2025-10-16 13:32:29.382726",
-  "name": "Confirm",
-  "workflow_action_name": "Confirm"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
   "modified": "2025-10-16 13:33:28.035075",
   "name": "Mark as In Use",
   "workflow_action_name": "Mark as In Use"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2025-10-16 15:58:07.678457",
-  "name": "Cancel",
-  "workflow_action_name": "Cancel"
  },
  {
   "docstatus": 0,
@@ -89,5 +75,26 @@
   "modified": "2025-10-17 09:06:25.976506",
   "name": "Create Purchase Invoice",
   "workflow_action_name": "Create Purchase Invoice"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-10-18 20:42:12.252117",
+  "name": "Issue Credit Note",
+  "workflow_action_name": "Issue Credit Note"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-10-16 13:32:29.382726",
+  "name": "Confirm",
+  "workflow_action_name": "Confirm"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-10-16 15:58:07.678457",
+  "name": "Cancel",
+  "workflow_action_name": "Cancel"
  }
 ]

@@ -14,6 +14,7 @@ doctype_js = {
     "Vehicle": "public/js/vehicle.js",
     "Fuel Card": "public/js/fuel_card.js",
     "Fuel Consumption": "public/js/fuel_consumption.js",
+    "Sales Return": "public/js/sales_return.js"
 }
 
 # Includes in <head>
@@ -238,6 +239,7 @@ fixtures = [
                 "Employee Checkin-custom_checkin_run",
                 "Employee Checkin-custom_attendance_device_id",
                 "Shift Type-custom_disabled",
+                "Sales Invoice Item-custom_sales_return"
             ]]
         ],
     },
@@ -258,6 +260,7 @@ fixtures = [
                 "Vehicle Workflow",
                 "Fuel Card Workflow",
                 "Fuel Consumption Workflow",
+                "Sales Return",
             ]]
         ],
     },

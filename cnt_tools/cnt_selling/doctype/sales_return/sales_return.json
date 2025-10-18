@@ -1,0 +1,257 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-10-18 20:58:40.044972",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_5su2",
+  "naming_series",
+  "customer",
+  "customer_name",
+  "customer_contact_person",
+  "mobiletelephone",
+  "column_break_opqm",
+  "date",
+  "sales_person",
+  "workflow_state",
+  "customer_address_section",
+  "shipping_address_name",
+  "column_break_lszd",
+  "customer_address_display",
+  "customer_reference_section",
+  "customer_reference_no",
+  "column_break_jfkj",
+  "customer_reference_date",
+  "currency_and_price_list_section",
+  "currency",
+  "column_break_bcgd",
+  "price_list",
+  "remarks_section",
+  "remarks",
+  "items_section",
+  "scan_barcode",
+  "column_break_lzeh",
+  "target_warehouse",
+  "section_break_bnjk",
+  "items",
+  "section_break_ouqt",
+  "company",
+  "column_break_qhxd",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_5su2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Sales Return",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "customer_contact_person",
+   "fieldtype": "Data",
+   "label": "Customer Contact Person"
+  },
+  {
+   "fieldname": "mobiletelephone",
+   "fieldtype": "Data",
+   "label": "Mobile/Telephone"
+  },
+  {
+   "fieldname": "column_break_opqm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "options": "Today"
+  },
+  {
+   "fieldname": "sales_person",
+   "fieldtype": "Link",
+   "label": "Sales Person",
+   "options": "Sales Person"
+  },
+  {
+   "fieldname": "customer_address_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Address"
+  },
+  {
+   "fieldname": "shipping_address_name",
+   "fieldtype": "Link",
+   "label": "Receiving Address Name",
+   "options": "Address"
+  },
+  {
+   "fieldname": "column_break_lszd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_address_display",
+   "fieldtype": "Read Only",
+   "label": "Address"
+  },
+  {
+   "fieldname": "customer_reference_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Reference"
+  },
+  {
+   "fieldname": "customer_reference_no",
+   "fieldtype": "Data",
+   "label": "Customer Reference No"
+  },
+  {
+   "fieldname": "column_break_jfkj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_reference_date",
+   "fieldtype": "Date",
+   "label": "Customer Reference Date"
+  },
+  {
+   "fieldname": "currency_and_price_list_section",
+   "fieldtype": "Section Break",
+   "label": "Currency and Price List "
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "column_break_bcgd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "price_list",
+   "fieldtype": "Link",
+   "label": "Price List",
+   "options": "Price List"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "remarks_section",
+   "fieldtype": "Section Break",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "items_section",
+   "fieldtype": "Section Break",
+   "hide_border": 1,
+   "label": "Items"
+  },
+  {
+   "fieldname": "scan_barcode",
+   "fieldtype": "Data",
+   "label": "Scan Barcode",
+   "options": "Barcode"
+  },
+  {
+   "fieldname": "column_break_lzeh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "target_warehouse",
+   "fieldtype": "Link",
+   "label": "Target Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "section_break_bnjk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Sales Return Items"
+  },
+  {
+   "fieldname": "section_break_ouqt",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "column_break_qhxd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Data",
+   "label": "Workflow State"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-10-18 21:02:39.005174",
+ "modified_by": "Administrator",
+ "module": "CNT Selling",
+ "name": "Sales Return",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

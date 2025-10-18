@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"cLoa7aLBbB\",\"type\":\"card\",\"data\":{\"card_name\":\"HR\",\"col\":4}},{\"id\":\"O8ODu8qr1b\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounting\",\"col\":4}},{\"id\":\"UerCEwMQTf\",\"type\":\"card\",\"data\":{\"card_name\":\"Fleet Management\",\"col\":4}},{\"id\":\"tk5o7hxOOR\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}}]",
+ "content": "[{\"id\":\"cLoa7aLBbB\",\"type\":\"card\",\"data\":{\"card_name\":\"HR\",\"col\":4}},{\"id\":\"O8ODu8qr1b\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounting\",\"col\":4}},{\"id\":\"eRmaN7nCYR\",\"type\":\"card\",\"data\":{\"card_name\":\"Selling\",\"col\":4}},{\"id\":\"UerCEwMQTf\",\"type\":\"card\",\"data\":{\"card_name\":\"Fleet Management\",\"col\":4}},{\"id\":\"tk5o7hxOOR\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}}]",
  "creation": "2025-10-13 13:06:21.432757",
  "custom_blocks": [],
  "docstatus": 0,
@@ -130,9 +130,28 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Selling",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Return",
+   "link_count": 0,
+   "link_to": "Sales Return",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2025-10-18 13:32:09.333529",
+ "modified": "2025-10-18 20:46:40.330106",
  "modified_by": "Administrator",
  "module": "CNT Tools",
  "name": "CNT Tools",
