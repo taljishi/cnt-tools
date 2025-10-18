@@ -1,2 +1,6 @@
 CNT Tools
 Fleet
+CNT HR
+CNT Accounting
+CNT Selling
+Regulatory

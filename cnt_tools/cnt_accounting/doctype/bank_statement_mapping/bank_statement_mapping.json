@@ -1,0 +1,234 @@
+{
+    "actions": [],
+    "allow_rename": 1,
+    "autoname": "field:title",
+    "creation": "2025-10-13 11:42:16.779951",
+    "doctype": "DocType",
+    "editable_grid": 1,
+    "engine": "InnoDB",
+    "field_order": [
+     "title",
+     "bank",
+     "default_bank_account",
+     "sb_file",
+     "file_type",
+     "encoding",
+     "delimiter",
+     "decimal_separator",
+     "remove_thousand_separators",
+     "skip_header_rows",
+     "date_format",
+     "has_credit_debit_columns",
+     "sb_cols",
+     "date_column",
+     "description_column",
+     "amount_column",
+     "credit_column",
+     "debit_column",
+     "balance_column",
+     "reference_column",
+     "sb_rules",
+     "credit_is_positive",
+     "negative_parentheses_as_minus",
+     "ignore_rows_containing",
+     "find_replace"
+    ],
+    "fields": [
+     {
+      "fieldname": "title",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Title",
+      "reqd": 1,
+      "unique": 1
+     },
+     {
+      "fieldname": "bank",
+      "fieldtype": "Link",
+      "label": "Bank",
+      "options": "Bank"
+     },
+     {
+      "fieldname": "default_bank_account",
+      "fieldtype": "Link",
+      "label": "Default Bank Account",
+      "options": "Bank Account"
+     },
+     {
+      "fieldname": "sb_file",
+      "fieldtype": "Section Break",
+      "label": "File Settings"
+     },
+     {
+      "default": "CSV",
+      "fieldname": "file_type",
+      "fieldtype": "Select",
+      "label": "File Type",
+      "options": "CSV\nXLSX"
+     },
+     {
+      "default": "utf-8",
+      "fieldname": "encoding",
+      "fieldtype": "Data",
+      "label": "Encoding"
+     },
+     {
+      "default": ",",
+      "fieldname": "delimiter",
+      "fieldtype": "Data",
+      "label": "Delimiter (CSV)"
+     },
+     {
+      "default": ".",
+      "fieldname": "decimal_separator",
+      "fieldtype": "Select",
+      "label": "Decimal Separator",
+      "options": ".\n,"
+     },
+     {
+      "default": "1",
+      "fieldname": "remove_thousand_separators",
+      "fieldtype": "Check",
+      "label": "Remove Thousand Separators"
+     },
+     {
+      "default": "0",
+      "fieldname": "skip_header_rows",
+      "fieldtype": "Int",
+      "label": "Skip Header Rows"
+     },
+     {
+      "default": "DD/MM/YYYY",
+      "fieldname": "date_format",
+      "fieldtype": "Data",
+      "label": "Date Format"
+     },
+     {
+      "default": "1",
+      "fieldname": "has_credit_debit_columns",
+      "fieldtype": "Check",
+      "label": "Has Credit & Debit Columns"
+     },
+     {
+      "fieldname": "sb_cols",
+      "fieldtype": "Section Break",
+      "label": "Column Mapping"
+     },
+     {
+      "fieldname": "date_column",
+      "fieldtype": "Data",
+      "label": "Date Column",
+      "reqd": 1
+     },
+     {
+      "fieldname": "description_column",
+      "fieldtype": "Data",
+      "label": "Description Column",
+      "reqd": 1
+     },
+     {
+      "depends_on": "eval:!doc.has_credit_debit_columns",
+      "fieldname": "amount_column",
+      "fieldtype": "Data",
+      "label": "Amount Column"
+     },
+     {
+      "depends_on": "eval:doc.has_credit_debit_columns",
+      "fieldname": "credit_column",
+      "fieldtype": "Data",
+      "label": "Credit Column"
+     },
+     {
+      "depends_on": "eval:doc.has_credit_debit_columns",
+      "fieldname": "debit_column",
+      "fieldtype": "Data",
+      "label": "Debit Column"
+     },
+     {
+      "fieldname": "balance_column",
+      "fieldtype": "Data",
+      "label": "Balance Column"
+     },
+     {
+      "fieldname": "reference_column",
+      "fieldtype": "Data",
+      "label": "Reference Column"
+     },
+     {
+      "fieldname": "sb_rules",
+      "fieldtype": "Section Break",
+      "label": "Advanced Rules"
+     },
+     {
+      "default": "1",
+      "fieldname": "credit_is_positive",
+      "fieldtype": "Check",
+      "label": "Credit Is Positive"
+     },
+     {
+      "default": "1",
+      "fieldname": "negative_parentheses_as_minus",
+      "fieldtype": "Check",
+      "label": "(1,234.56) Means Negative"
+     },
+     {
+      "fieldname": "ignore_rows_containing",
+      "fieldtype": "Small Text",
+      "label": "Ignore Rows Containing (one per line / regex ok)"
+     },
+     {
+      "fieldname": "find_replace",
+      "fieldtype": "Table",
+      "label": "Find/Replace Rules",
+      "options": "Bank Statement Find and Replace Rule"
+     }
+    ],
+    "index_web_pages_for_search": 1,
+    "links": [],
+    "module": "CNT Tools",
+    "name": "Bank Statement Mapping",
+    "naming_rule": "By fieldname",
+    "owner": "Administrator",
+    "permissions": [
+     {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+     },
+     {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Accounts Manager",
+      "share": 1,
+      "write": 1
+     },
+     {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Accounts User",
+      "share": 1,
+      "write": 1
+     }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1
+   }
