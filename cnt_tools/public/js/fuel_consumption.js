@@ -1,6 +1,6 @@
 /*******************************************************
  * Doctype Script:     Fuel Consumption
- * Maintained By:      Digital Transformation Team
+ * Maintained By:      Cloud Nine Technologies
  * Description:        Calculates total fuel and enables purchase invoice creation.
  *                     All fields are read-only except 'fuel_card_number' and 'amount_consumed',
  *                     which are controlled via field-level settings (Fetch From + editable).
