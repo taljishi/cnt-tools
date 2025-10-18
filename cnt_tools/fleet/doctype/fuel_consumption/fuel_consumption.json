@@ -1,0 +1,160 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "naming_series:",
+  "creation": "2025-10-17 08:59:59.556594",
+  "default_view": "List",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "details_tab",
+    "naming_series",
+    "report_date",
+    "column_break_mu59e",
+    "company",
+    "amended_from",
+    "consumption_period_section",
+    "from_date",
+    "column_break_mfkub",
+    "to_date",
+    "consumption_details_section",
+    "fuel_consumption_details",
+    "section_break_zkejm",
+    "account_balance",
+    "column_break_xcdjz",
+    "total_fuel_consumption",
+    "more_info_tab",
+    "status_section",
+    "workflow_state"
+  ],
+  "fields": [
+    {
+      "fieldname": "details_tab",
+      "fieldtype": "Tab Break",
+      "label": "Details"
+    },
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "label": "Naming Series"
+    },
+    {
+      "default": "Today",
+      "fieldname": "report_date",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "column_break_mu59e",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "company",
+      "fieldtype": "Link",
+      "label": "Company",
+      "options": "Company"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "label": "Amended From",
+      "no_copy": 1,
+      "options": "Fuel Consumption",
+      "print_hide": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "consumption_period_section",
+      "fieldtype": "Section Break",
+      "label": "Consumption Period"
+    },
+    {
+      "fieldname": "from_date",
+      "fieldtype": "Date",
+      "label": "From Date"
+    },
+    {
+      "fieldname": "column_break_mfkub",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "to_date",
+      "fieldtype": "Date",
+      "label": "To Date"
+    },
+    {
+      "fieldname": "consumption_details_section",
+      "fieldtype": "Section Break",
+      "hide_border": 1,
+      "label": "Consumption Details"
+    },
+    {
+      "fieldname": "fuel_consumption_details",
+      "fieldtype": "Table",
+      "label": "Fuel Consumption Details",
+      "options": "Fuel Consumption Details"
+    },
+    {
+      "fieldname": "section_break_zkejm",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "account_balance",
+      "fieldtype": "Currency",
+      "label": "Account Balance"
+    },
+    {
+      "fieldname": "column_break_xcdjz",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "total_fuel_consumption",
+      "fieldtype": "Currency",
+      "label": "Total Fuel Consumption"
+    },
+    {
+      "fieldname": "more_info_tab",
+      "fieldtype": "Tab Break",
+      "label": "More Info"
+    },
+    {
+      "fieldname": "status_section",
+      "fieldtype": "Section Break",
+      "label": "Status"
+    },
+    {
+      "fieldname": "workflow_state",
+      "fieldtype": "Data",
+      "label": "Workflow State"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "is_submittable": 1,
+  "links": [],
+  "modified": "2025-10-17 09:02:40.511118",
+  "modified_by": "Administrator",
+  "module": "Fleet",
+  "name": "Fuel Consumption",
+  "naming_rule": "By \"Naming Series\" field",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}
