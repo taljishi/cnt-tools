@@ -1,0 +1,191 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "creation": "2025-10-17 08:40:27.328468",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "fuel_card_number",
+    "card_assignment_type",
+    "column_break_bxrmw",
+    "amount_consumed",
+    "monthly_fuel_budget",
+    "vehicle_details_section",
+    "vehicle",
+    "license_plate",
+    "column_break_sjc8u",
+    "make",
+    "model",
+    "employee_details_section",
+    "employee",
+    "employee_shared_use_only",
+    "employee_name",
+    "shared_use_employee_name",
+    "column_break_rwa73",
+    "department",
+    "shared_use_department",
+    "accounting_dimension_section",
+    "cost_center",
+    "shared_use_cost_center"
+  ],
+  "fields": [
+    {
+      "fieldname": "fuel_card_number",
+      "fieldtype": "Link",
+      "label": "Fuel Card Number",
+      "options": "Fuel Card"
+    },
+    {
+      "fetch_from": "fuel_card_number.card_assignment_type",
+      "fieldname": "card_assignment_type",
+      "fieldtype": "Data",
+      "label": "Card Assignment Type",
+      "read_only": 1
+    },
+    {
+      "fieldname": "column_break_bxrmw",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "amount_consumed",
+      "fieldtype": "Currency",
+      "in_list_view": 1,
+      "label": "Amount Consumed"
+    },
+    {
+      "fetch_from": "fuel_card_number.monthly_fuel_budget",
+      "fieldname": "monthly_fuel_budget",
+      "fieldtype": "Currency",
+      "label": "Monthly Fuel Budget",
+      "read_only": 1
+    },
+    {
+      "fieldname": "vehicle_details_section",
+      "fieldtype": "Section Break",
+      "label": "Vehicle Details"
+    },
+    {
+      "fetch_from": "fuel_card_number.vehicle",
+      "fieldname": "vehicle",
+      "fieldtype": "Link",
+      "label": "Vehicle",
+      "options": "Vehicle",
+      "read_only": 1
+    },
+    {
+      "fetch_from": "fuel_card_number.license_plate",
+      "fieldname": "license_plate",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "License Plate",
+      "read_only": 1
+    },
+    {
+      "fieldname": "column_break_sjc8u",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fetch_from": "fuel_card_number.make",
+      "fieldname": "make",
+      "fieldtype": "Data",
+      "label": "Make",
+      "read_only": 1
+    },
+    {
+      "fetch_from": "fuel_card_number.model",
+      "fieldname": "model",
+      "fieldtype": "Data",
+      "label": "Model",
+      "read_only": 1
+    },
+    {
+      "fieldname": "employee_details_section",
+      "fieldtype": "Section Break",
+      "label": "Employee Details"
+    },
+    {
+      "fetch_from": "fuel_card_number.employee",
+      "fieldname": "employee",
+      "fieldtype": "Link",
+      "ignore_user_permissions": 1,
+      "label": "Employee",
+      "options": "Employee",
+      "read_only": 1
+    },
+    {
+      "depends_on": "eval:doc.card_assignment_type==='Shared Use'",
+      "fieldname": "employee_shared_use_only",
+      "fieldtype": "Link",
+      "ignore_user_permissions": 1,
+      "label": "Employee (Shared Use Only)",
+      "mandatory_depends_on": "eval:doc.card_assignment_type==='Shared Use'",
+      "options": "Employee"
+    },
+    {
+      "fetch_from": "fuel_card_number.employee_name",
+      "fieldname": "employee_name",
+      "fieldtype": "Data",
+      "label": "Employee Name"
+    },
+    {
+      "fetch_from": "employee_shared_use_only.employee_name",
+      "fieldname": "shared_use_employee_name",
+      "fieldtype": "Data",
+      "label": "Employee Name",
+      "read_only": 1
+    },
+    {
+      "fieldname": "column_break_rwa73",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fetch_from": "fuel_card_number.department",
+      "fieldname": "department",
+      "fieldtype": "Link",
+      "ignore_user_permissions": 1,
+      "in_list_view": 1,
+      "label": "Department",
+      "options": "Department",
+      "read_only": 1
+    },
+    {
+      "fetch_from": "employee_shared_use_only.department",
+      "fieldname": "shared_use_department",
+      "fieldtype": "Link",
+      "label": "Department",
+      "options": "Department"
+    },
+    {
+      "fieldname": "accounting_dimension_section",
+      "fieldtype": "Section Break",
+      "label": "Accounting Dimension"
+    },
+    {
+      "fetch_from": "fuel_card_number.cost_center",
+      "fieldname": "cost_center",
+      "fieldtype": "Link",
+      "label": "Cost Center",
+      "options": "Cost Center"
+    },
+    {
+      "fetch_from": "shared_use_department.custom_default_buying_cost_center",
+      "fieldname": "shared_use_cost_center",
+      "fieldtype": "Link",
+      "label": "Cost Center",
+      "options": "Cost Center"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "istable": 1,
+  "links": [],
+  "modified": "2025-10-17 08:58:01.114926",
+  "modified_by": "Administrator",
+  "module": "Fleet",
+  "name": "Fuel Consumption Details",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}

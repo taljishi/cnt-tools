@@ -218,8 +218,19 @@ app_color = "blue"
 #	"cnt_tools.auth.validate"
 # ]
 
-# Export only what belongs to this app
+# After Install
+after_install = "cnt_tools.install.after_install"
+
+# Doctype JS mappings
+doctype_js = {
+    "Vehicle": "public/js/vehicle.js",
+    "Fuel Card": "public/js/fuel_card.js",
+    "Fuel Consumption": "public/js/fuel_consumption.js",
+}
+
+# Export fixtures for all Custom Fields, Workflows, States, and Actions related to CNT Tools
 fixtures = [
+    # Custom Fields - both from Checkin-related and Fleet-related doctypes
     {
         "doctype": "Custom Field",
         "filters": [
@@ -230,4 +241,27 @@ fixtures = [
             ]]
         ],
     },
+    {
+        "doctype": "Custom Field",
+        "filters": [
+            ["dt", "in", [
+                "Vehicle",
+                "Department",
+            ]]
+        ],
+    },
+    # Workflows
+    {
+        "doctype": "Workflow",
+        "filters": [
+            ["name", "in", [
+                "Vehicle Workflow",
+                "Fuel Card Workflow",
+                "Fuel Consumption Workflow",
+            ]]
+        ],
+    },
+    # Export all required supporting workflow doctypes
+    "Workflow State",
+    "Workflow Action Master",
 ]

@@ -1,105 +1,70 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "naming_series:",
- "creation": "2025-10-16 18:40:14.375604",
+ "creation": "2025-10-18 00:14:06.545808",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "naming_series",
-  "title",
-  "auto_prefix_fields",
-  "auto_prefix_name",
-  "module",
-  "reference_doctype",
-  "workspace",
-  "app_icon",
-  "enable_developer_mode",
+  "default_workspace",
+  "default_user",
   "company",
-  "party_tab",
-  "customer",
-  "supplier",
-  "employee",
-  "user_rile_tab",
-  "user",
-  "role"
+  "last_updated",
+  "default_workflow_prefix",
+  "default_doctype_for_automation",
+  "column_break_gzls",
+  "enable_cnt_automation",
+  "auto_prefix_custom_fields",
+  "cnt_app_color",
+  "cnt_app_icon",
+  "developer_mode_local",
+  "allow_unsafe_scripts",
+  "user_rile_tab"
  ],
  "fields": [
   {
-   "default": "0",
-   "fieldname": "auto_prefix_fields",
-   "fieldtype": "Check",
-   "label": "Auto Prefix Fields"
-  },
-  {
-   "fieldname": "app_icon",
-   "fieldtype": "Attach Image",
-   "label": "App Icon"
-  },
-  {
-   "default": "0",
-   "fieldname": "enable_developer_mode",
-   "fieldtype": "Check",
-   "label": "Enable Developer Mode"
-  },
-  {
    "fieldname": "company",
    "fieldtype": "Link",
-   "label": "Company",
+   "label": "Default Company",
    "options": "Company"
   },
   {
-   "fieldname": "customer",
-   "fieldtype": "Link",
-   "label": "Customer",
-   "options": "Customer"
+   "fieldname": "column_break_gzls",
+   "fieldtype": "Column Break"
   },
   {
-   "fieldname": "supplier",
-   "fieldtype": "Link",
-   "label": "Supplier",
-   "options": "Supplier"
+   "default": "0",
+   "description": "Adds cnt_ to fieldnames automatically.\n",
+   "fieldname": "auto_prefix_custom_fields",
+   "fieldtype": "Check",
+   "label": "Auto Prefix Custom Fields"
   },
   {
-   "fieldname": "employee",
-   "fieldtype": "Link",
-   "label": "Employee",
-   "options": "Employee"
+   "default": "0",
+   "description": "Toggle developer mode (for dev sites only).",
+   "fieldname": "developer_mode_local",
+   "fieldtype": "Check",
+   "label": "Developer Mode (Local)"
   },
   {
-   "fieldname": "user",
-   "fieldtype": "Link",
-   "label": "User",
-   "options": "User"
+   "default": "0",
+   "description": "Toggle CNT hooks globally.\n",
+   "fieldname": "enable_cnt_automation",
+   "fieldtype": "Check",
+   "label": "Enable CNT Automation"
   },
   {
-   "fieldname": "role",
-   "fieldtype": "Link",
-   "label": "Role",
-   "options": "Role"
+   "description": "Used for workspace and launcher styling.",
+   "fieldname": "cnt_app_color",
+   "fieldtype": "Color",
+   "label": "CNT App Color"
   },
   {
-   "fieldname": "naming_series",
-   "fieldtype": "Select",
-   "label": "Naming Series"
-  },
-  {
-   "fieldname": "reference_doctype",
-   "fieldtype": "Link",
-   "label": "Reference DocType",
-   "options": "DocType"
-  },
-  {
-   "fieldname": "title",
-   "fieldtype": "Data",
-   "label": "Title"
-  },
-  {
-   "fieldname": "party_tab",
-   "fieldtype": "Tab Break",
-   "label": "Party"
+   "description": "Your logo shown on the app tile.",
+   "fieldname": "cnt_app_icon",
+   "fieldtype": "Attach Image",
+   "label": "CNT App Icon"
   },
   {
    "fieldname": "user_rile_tab",
@@ -107,45 +72,64 @@
    "label": "User Rile"
   },
   {
-   "fieldname": "workspace",
+   "default": "0",
+   "description": "For development environments only.",
+   "fieldname": "allow_unsafe_scripts",
+   "fieldtype": "Check",
+   "label": "Allow Unsafe Scripts"
+  },
+  {
+   "fieldname": "last_updated",
+   "fieldtype": "Datetime",
+   "label": "Last Updated",
+   "read_only": 1
+  },
+  {
+   "description": "e.g. \u201cCNT -\u201d to auto-name workflows.",
+   "fieldname": "default_workflow_prefix",
+   "fieldtype": "Data",
+   "label": "Default Workflow Prefix"
+  },
+  {
+   "fieldname": "default_workspace",
    "fieldtype": "Link",
-   "label": "Workspace",
+   "label": "Default Workspace",
    "options": "Workspace"
   },
   {
-   "fieldname": "module",
+   "fieldname": "default_user",
    "fieldtype": "Link",
-   "label": "Module",
-   "options": "Module Def"
+   "label": "Default User",
+   "options": "User"
   },
   {
-   "fieldname": "auto_prefix_name",
-   "fieldtype": "Data",
-   "label": "Auto Prefix Name"
+   "fieldname": "default_doctype_for_automation",
+   "fieldtype": "Link",
+   "label": "Default Doctype for Automation",
+   "options": "DocType"
   }
  ],
  "index_web_pages_for_search": 1,
+ "issingle": 1,
  "links": [],
- "modified": "2025-10-17 04:49:55.241843",
+ "modified": "2025-10-18 00:55:27.481907",
  "modified_by": "Administrator",
  "module": "CNT Tools",
  "name": "CNT Settings",
- "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
    "create": 1,
    "delete": 1,
    "email": 1,
-   "export": 1,
    "print": 1,
    "read": 1,
-   "report": 1,
    "role": "System Manager",
    "share": 1,
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

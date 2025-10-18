@@ -53,7 +53,7 @@ frappe.ui.form.on('Checkin Source File', {
 		}
 	
 		frappe.call({
-		  method: 'cnt_tools.cnt_tools.doctype.checkin_run.checkin_run.parse_source',
+		  method: 'cnt_tools.doctype.checkin_run.checkin_run.parse_source',
 		  args: { name: frm.doc.name, show_popup: 1 },
 		  freeze: true,
 		  callback: () => {
@@ -82,7 +82,7 @@ frappe.ui.form.on('Checkin Source File', {
   
 	frm.add_custom_button(__('Create Employee Checkins'), () => {
 	  frappe.call({
-		method: 'cnt_tools.cnt_tools.doctype.checkin_run.checkin_run.generate_checkins',
+		method: 'cnt_tools.doctype.checkin_run.checkin_run.generate_checkins',
 		args: { name: frm.doc.name },
 		freeze: true,
 		callback: (r) => {
@@ -130,7 +130,7 @@ frappe.ui.form.on('Checkin Source File', {
 	
 	  // Fetch first page
 	  frappe.call({
-		method: 'cnt_tools.cnt_tools.doctype.checkin_run.checkin_run.cr_preview',
+		method: 'cnt_tools.doctype.checkin_run.checkin_run.cr_preview',
 		args: { name: frm.doc.name, start: 0, page_len: 200, order: 'desc' },
 		callback: (r) => {
 		  const res = r.message || {};
@@ -186,7 +186,7 @@ frappe.ui.form.on('Checkin Source File', {
               const status = (frm.doc.status || '').toLowerCase();
               if (status === 'imported') {
                 const r2 = await frappe.call({
-                  method: 'cnt_tools.cnt_tools.doctype.checkin_run.checkin_run.cr_imported_time_range',
+                  method: 'cnt_tools.doctype.checkin_run.checkin_run.cr_imported_time_range',
                   args: { name: frm.doc.name },
                 });
                 const rng = (r2 && r2.message) || {};
