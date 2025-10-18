@@ -1,0 +1,93 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-09-27 20:41:22.019178",
+  "name": "For Approval",
+  "workflow_action_name": "For Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-10-09 11:05:32.886240",
+  "name": "Process",
+  "workflow_action_name": "Process"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-09-13 11:28:14.815018",
+  "name": "Approve",
+  "workflow_action_name": "Approve"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-09-13 11:28:14.817038",
+  "name": "Reject",
+  "workflow_action_name": "Reject"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-09-13 11:28:14.819708",
+  "name": "Review",
+  "workflow_action_name": "Review"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-10-16 13:29:59.136070",
+  "name": "Update Details",
+  "workflow_action_name": "Update Details"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-10-16 13:31:27.199722",
+  "name": "Mark as Not in Use",
+  "workflow_action_name": "Mark as Not in Use"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-10-16 13:32:08.971775",
+  "name": "Mark as Sold",
+  "workflow_action_name": "Mark as Sold"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-10-16 13:32:29.382726",
+  "name": "Confirm",
+  "workflow_action_name": "Confirm"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-10-16 13:33:28.035075",
+  "name": "Mark as In Use",
+  "workflow_action_name": "Mark as In Use"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-10-16 15:58:07.678457",
+  "name": "Cancel",
+  "workflow_action_name": "Cancel"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-10-17 09:05:55.706782",
+  "name": "Verify",
+  "workflow_action_name": "Verify"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2025-10-17 09:06:25.976506",
+  "name": "Create Purchase Invoice",
+  "workflow_action_name": "Create Purchase Invoice"
+ }
+]

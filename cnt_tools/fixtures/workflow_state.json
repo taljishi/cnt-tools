@@ -1,0 +1,137 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "question-sign",
+  "modified": "2025-09-13 11:28:14.782314",
+  "name": "Pending",
+  "style": "",
+  "workflow_state_name": "Pending"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "ok-sign",
+  "modified": "2025-09-13 11:28:14.785794",
+  "name": "Approved",
+  "style": "Success",
+  "workflow_state_name": "Approved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "remove",
+  "modified": "2025-09-13 11:28:14.789719",
+  "name": "Rejected",
+  "style": "Danger",
+  "workflow_state_name": "Rejected"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-16 13:36:43.032848",
+  "name": "In Use",
+  "style": "Success",
+  "workflow_state_name": "In Use"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-16 13:37:05.984133",
+  "name": "Update in Progress",
+  "style": "Warning",
+  "workflow_state_name": "Update in Progress"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-16 13:36:51.966819",
+  "name": "Not In Use",
+  "style": "Info",
+  "workflow_state_name": "Not In Use"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-16 13:37:17.343674",
+  "name": "Sold",
+  "style": "Inverse",
+  "workflow_state_name": "Sold"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-16 13:28:47.439577",
+  "name": "Expired",
+  "style": "",
+  "workflow_state_name": "Expired"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-16 15:56:58.934924",
+  "name": "Cancelled",
+  "style": "",
+  "workflow_state_name": "Cancelled"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-17 09:04:08.786281",
+  "name": "Draft",
+  "style": "",
+  "workflow_state_name": "Draft"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-17 09:44:10.154574",
+  "name": "Verified",
+  "style": "Primary",
+  "workflow_state_name": "Verified"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-17 09:43:54.238862",
+  "name": "Purchase Invoice Created",
+  "style": "Success",
+  "workflow_state_name": "Purchase Invoice Created"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-09 11:17:55.888814",
+  "name": "Completed",
+  "style": "Success",
+  "workflow_state_name": "Completed"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-09 10:46:17.244452",
+  "name": "In Process",
+  "style": "",
+  "workflow_state_name": "In Process"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-09-27 20:47:29.758313",
+  "name": "For Approval",
+  "style": "",
+  "workflow_state_name": "For Approval"
+ }
+]
