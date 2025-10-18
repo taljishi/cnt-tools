@@ -9,6 +9,13 @@ app_license = "MIT"
 app_icon = "setting-gear"
 app_color = "blue"
 
+# Doctype JS (Client Script)
+doctype_js = {
+    "Vehicle": "public/js/vehicle.js",
+    "Fuel Card": "public/js/fuel_card.js",
+    "Fuel Consumption": "public/js/fuel_consumption.js",
+}
+
 # Includes in <head>
 # ------------------
 
@@ -221,14 +228,7 @@ app_color = "blue"
 # After Install
 after_install = "cnt_tools.install.after_install"
 
-# Doctype JS mappings
-doctype_js = {
-    "Vehicle": "public/js/vehicle.js",
-    "Fuel Card": "public/js/fuel_card.js",
-    "Fuel Consumption": "public/js/fuel_consumption.js",
-}
-
-# Export fixtures for all Custom Fields, Workflows, States, and Actions related to CNT Tools
+# # Export fixtures owned by this app
 fixtures = [
     # Custom Fields - both from Checkin-related and Fleet-related doctypes
     {
