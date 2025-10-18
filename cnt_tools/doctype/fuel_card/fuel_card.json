@@ -1,0 +1,197 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "field:fuel_card_number",
+ "creation": "2025-10-15 12:47:06.804375",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "fuel_card_details_section",
+  "workflow_state",
+  "fuel_card_number",
+  "fuel_card_expiry_date",
+  "fuel_card_provider",
+  "fuel_card_type",
+  "column_break_z33az",
+  "monthly_fuel_budget",
+  "card_assignment_type",
+  "employee_details_section",
+  "employee",
+  "employee_name",
+  "column_break_c1lhh",
+  "department",
+  "vehicle_details_section",
+  "vehicle",
+  "license_plate",
+  "column_break_yetwg",
+  "make",
+  "model",
+  "accounting_dimensions_section",
+  "cost_center"
+ ],
+ "fields": [
+  {
+   "fieldname": "fuel_card_details_section",
+   "fieldtype": "Section Break",
+   "label": "Fuel Card Details"
+  },
+  {
+   "fieldname": "fuel_card_number",
+   "fieldtype": "Data",
+   "label": "Card Number",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "fuel_card_expiry_date",
+   "fieldtype": "Date",
+   "label": "Expiry Date",
+   "reqd": 1
+  },
+  {
+   "default": "Sadeem",
+   "fieldname": "fuel_card_provider",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Provider",
+   "options": "Sadeem"
+  },
+  {
+   "default": "Prepaid",
+   "fieldname": "fuel_card_type",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Type",
+   "options": "Credit\nPrepaid"
+  },
+  {
+   "fieldname": "column_break_z33az",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "monthly_fuel_budget",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Monthly Budget"
+  },
+  {
+   "fieldname": "card_assignment_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Card Assignment Type",
+   "options": "Vehicle Locked\nEmployee Assigned\nShared Use"
+  },
+  {
+   "fieldname": "employee_details_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Details"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_c1lhh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vehicle_details_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Details"
+  },
+  {
+   "fieldname": "vehicle",
+   "fieldtype": "Link",
+   "label": "Vehicle",
+   "options": "Vehicle"
+  },
+  {
+   "fetch_from": "vehicle.license_plate",
+   "fieldname": "license_plate",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "License Plate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_yetwg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "vehicle.make",
+   "fieldname": "make",
+   "fieldtype": "Data",
+   "label": "Make",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "vehicle.model",
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "label": "Model",
+   "read_only": 1
+  },
+  {
+   "fieldname": "accounting_dimensions_section",
+   "fieldtype": "Section Break",
+   "label": "Accounting Dimensions"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Data",
+   "label": "Workflow State",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-10-17 08:37:17.411776",
+ "modified_by": "Administrator",
+ "module": "CNT Fleet",
+ "name": "Fuel Card",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

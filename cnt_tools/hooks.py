@@ -231,3 +231,5 @@ fixtures = [
         ],
     },
 ]
+
+after_install = "cnt_tools.install.after_install"

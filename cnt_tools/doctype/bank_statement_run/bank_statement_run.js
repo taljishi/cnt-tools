@@ -28,7 +28,7 @@ function fmtCurrency(val, cur) {
       if (!frm.doc.bank_account) return;
       try {
         const r = await frappe.call({
-          method: 'cnt_tools.cnt_tools.doctype.bank_statement_run.bank_statement_run.get_mapping_for_bank_account',
+          method: 'cnt_tools.doctype.bank_statement_run.bank_statement_run.get_mapping_for_bank_account',
           args: { bank_account: frm.doc.bank_account },
         });
         const map = r.message;

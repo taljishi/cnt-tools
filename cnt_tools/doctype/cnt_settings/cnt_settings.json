@@ -1,0 +1,136 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-18 00:14:06.545808",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "default_workspace",
+  "default_user",
+  "company",
+  "last_updated",
+  "default_workflow_prefix",
+  "default_doctype_for_automation",
+  "column_break_gzls",
+  "enable_cnt_automation",
+  "auto_prefix_custom_fields",
+  "cnt_app_color",
+  "cnt_app_icon",
+  "developer_mode_local",
+  "allow_unsafe_scripts",
+  "user_rile_tab"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Default Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "column_break_gzls",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Adds cnt_ to fieldnames automatically.\n",
+   "fieldname": "auto_prefix_custom_fields",
+   "fieldtype": "Check",
+   "label": "Auto Prefix Custom Fields"
+  },
+  {
+   "default": "0",
+   "description": "Toggle developer mode (for dev sites only).",
+   "fieldname": "developer_mode_local",
+   "fieldtype": "Check",
+   "label": "Developer Mode (Local)"
+  },
+  {
+   "default": "0",
+   "description": "Toggle CNT hooks globally.\n",
+   "fieldname": "enable_cnt_automation",
+   "fieldtype": "Check",
+   "label": "Enable CNT Automation"
+  },
+  {
+   "description": "Used for workspace and launcher styling.",
+   "fieldname": "cnt_app_color",
+   "fieldtype": "Color",
+   "label": "CNT App Color"
+  },
+  {
+   "description": "Your logo shown on the app tile.",
+   "fieldname": "cnt_app_icon",
+   "fieldtype": "Attach Image",
+   "label": "CNT App Icon"
+  },
+  {
+   "fieldname": "user_rile_tab",
+   "fieldtype": "Tab Break",
+   "label": "User Rile"
+  },
+  {
+   "default": "0",
+   "description": "For development environments only.",
+   "fieldname": "allow_unsafe_scripts",
+   "fieldtype": "Check",
+   "label": "Allow Unsafe Scripts"
+  },
+  {
+   "fieldname": "last_updated",
+   "fieldtype": "Datetime",
+   "label": "Last Updated",
+   "read_only": 1
+  },
+  {
+   "description": "e.g. \u201cCNT -\u201d to auto-name workflows.",
+   "fieldname": "default_workflow_prefix",
+   "fieldtype": "Data",
+   "label": "Default Workflow Prefix"
+  },
+  {
+   "fieldname": "default_workspace",
+   "fieldtype": "Link",
+   "label": "Default Workspace",
+   "options": "Workspace"
+  },
+  {
+   "fieldname": "default_user",
+   "fieldtype": "Link",
+   "label": "Default User",
+   "options": "User"
+  },
+  {
+   "fieldname": "default_doctype_for_automation",
+   "fieldtype": "Link",
+   "label": "Default Doctype for Automation",
+   "options": "DocType"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-10-18 00:55:27.481907",
+ "modified_by": "Administrator",
+ "module": "CNT Tools",
+ "name": "CNT Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
